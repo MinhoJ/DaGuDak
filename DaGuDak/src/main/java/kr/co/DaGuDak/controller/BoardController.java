@@ -35,9 +35,7 @@ public class BoardController {
 
 		// 세션으로 bid 저장할 것, 그럼 작성하기->수정,삭제,목록할 때 파라미터 값 없어도 게시판 별로 컨트롤 가능
 
-		
-		
-		
+
 		session.setAttribute("bid", bid);
 
 		int boardid = (int) session.getAttribute("bid");
