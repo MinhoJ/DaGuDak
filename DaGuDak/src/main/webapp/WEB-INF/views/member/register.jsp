@@ -23,22 +23,24 @@
                <div class="col-md-11">
                   <div class="form-group">
                   <label for="id">아이디</label> 
-                     <input type="text" name="member_id" id="member_id" class="form-control" placeholder="아이디" required   style="float: left;">
+                     <input type="text" name="member_id" id="member_id" onkeyup="fn_idChk()" class="form-control" placeholder="아이디" required style="float: left;">
+                       <div id="chkID"></div>
                   </div>
                </div>
 
-               <div class="col-md-11">
+        <!--        <div class="col-md-11">
                   <div id="idChecked" style="float: left;"></div>
                   <button class="btn btn-dark" type="button" id="idChk" name="idChk"   onclick="fn_idChk();" value="N"
                           style="float: right; margin-top: 5px; margin-bottom: 5px;">중복확인
                    </button>
-               </div>
+               </div> -->
 
                <div class="col-md-11">
                   <div class="form-group">
                   <label for=password>비밀번호</label> 
                      <input type="password" name="password" id="password"
-                        class="form-control" placeholder="비밀번호" required>
+                        class="form-control" placeholder="비밀번호"  onkeyup="chkPW()" required>
+                       <div id="chkPW"></div>
                   </div>
                </div>
                
@@ -46,7 +48,7 @@
                   <div class="form-group">
                   <label for=checkPassword>비밀번호 확인</label> 
                      <input type="password" name="checkPassword" id="checkPassword"
-                        class="form-control" onkeyup="checkPwd()" placeholder="비밀번호 확인" required>
+                        class="form-control" onkeyup="duplicatePW()" placeholder="비밀번호 확인" required>
                      <div id="passwordChecked"></div>
                   </div>
                </div>
@@ -71,7 +73,7 @@
                      <label for=checkBirth>이메일 ('@'를 포함해 주세요.)</label> 
                         <input type="email" name="email" class="form-control" placeholder="이메일" required>
                   </div>
-               </div>
+                 </div>
           
                <div class="col-md-11">
                   <div class="form-group">

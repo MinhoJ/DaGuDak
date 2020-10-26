@@ -123,7 +123,7 @@
                   
                   <!-- 위 아래 둘중 선택 -->
                   <div style="margin: auto; width: 70%;" class="ftco-animate">
-                  <span>아이디가 없으신가요? <a href="${pageContext.request.contextPath}/register"> 회원가입</a></span>
+                  <span>아이디가 없으신가요? <a href="${pageContext.request.contextPath}/member/register"> 회원가입</a></span>
                   </div>
                   
                </div>

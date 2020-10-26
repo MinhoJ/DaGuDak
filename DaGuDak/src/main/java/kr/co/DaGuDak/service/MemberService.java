@@ -14,7 +14,7 @@ public interface MemberService {
 	public boolean loginCheck(MemberVO vo, HttpSession session) throws Exception;
 
 	public MemberVO viewMember(MemberVO vo) throws Exception;
-
+  
 	public void updateMember(MemberVO vo) throws Exception;
 
 	public MemberVO userInfo(String member_id) throws Exception;
@@ -24,6 +24,8 @@ public interface MemberService {
 	public boolean passwordChk(String member_id, MemberVO vo) throws Exception;
 
 	public int getPoint(String loginId)throws Exception;
+	
+	public void deleteMember(String member_id) throws Exception;
 }
 
 //MemberController에서 보낸 파라미터를 memberService로 받아주고 받은 파라미터는 DAO로 보내줍니다.

@@ -51,26 +51,20 @@
 	<update id="updateMember">
 		UPDATE member
 		SET password = #{password},
-		name = #{name},
-		email = #{email},
-		phone = #{phone},
-		birth = #{birth}
-		WHERE
-		member_id = #{member_id}
+			email = #{email},
+			phone = #{phone}
+		WHERE member_id = #{member_id}
 	</update>
 
 	<delete id="deleteMember">
 		DELETE FROM member
-		WHERE member_id = #{member_id} ,
-		and password = #{password}
+		WHERE member_id = #{member_id}
 	</delete>
 
 	<select id="userInfo" resultType="MemberVO">
-		SELECT member_id,
-		name,birth,email,phone,win_rate,point
+		SELECT member_id, name,birth,email,phone,win_rate,point
 		FROM MEMBER
-		WHERE member_id =
-		#{member_id}
+		WHERE member_id = #{member_id}
 	</select>
 
 	<select id="passwordChk" resultType="int">
@@ -85,10 +79,6 @@
 		SET point = #{point}
 		WHERE member_id = #{member_id}
 	</update>
-
-
-	<!-- <update id="updateMember"> update member set name=#{name}, passwd=#{passwd}, 
-		email=#{email} where userid=#{userid} </update> <delete id="deleteMember"> 
-		delete from member where userid=#{userid} </delete> </mapper> -->
+ 
 
 </mapper>

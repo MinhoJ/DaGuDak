@@ -28,6 +28,8 @@ public interface MemberDAO {
 
 	public void chargePoint(MemberVO vo) throws Exception;
 
+	public void deleteMember(String member_id) throws Exception;
+
 }
 //Service에서 보내주는 파라미터들을 DAO에서 받아줍니다.
 //받은 파라미터(MemberVO)는 memberMapper.xml에 id가 checkId인 곳으로 보내주고

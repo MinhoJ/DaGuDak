@@ -1,3 +1,4 @@
+//id 중복확인 버튼 submit	
 	$(document).ready(function(){
 			
 			$("#submit").on("click", function(){
@@ -9,43 +10,108 @@
 					return false;
 					
 				} else if(idChkVal == "Y"){
-					
-					 
 					$("#regForm").submit();
 					return true;
 				}
 			});
 		})
-	//id 중복확인	
+		
+	//id 중복확인	ajax
 		function fn_idChk(){
-			 
+ 
+		 
 			$.ajax({
 				url : "/DaGuDak/member/idChk?member_id="+$("#member_id").val(),
 				type : "get",
 				success : function(data){
+					
+
+					 var member_id = $("#member_id").val();
+					 var num = member_id.search(/[0-9]/g); 
+					 
 				 
 					if(data == 1){ 
-						$("#idChecked").css("color", "red");
-						$("#idChecked").html("이미 사용중인 아이디입니다.");
-						$("#idChk").attr("value", "N");
+						$("#chkID").css("color", "red");
+						$("#chkID").html("이미 사용중인 아이디입니다."); 
 						$("#submit").attr("disabled", "disabled"); 
 						
-					} else if(data == 0){
-						$("#idChecked").css("color", "green");
-						$("#idChecked").html("사용가능한 아이디입니다.");
+					} else if(data == 0 && member_id.length>8){
+						$("#chkID").css("color", "green");
+						$("#chkID").html("사용가능한 아이디입니다.");
 						$("#idChk").attr("value", "Y");
 						$("#submit").removeAttr("disabled");
-					} else {
-						$("#idChecked").css("color", "red");
-						$("#idChecked").html("아이디를 입력해주십시오.");
+						
+					}  else if(member_id.length<8){
+						document.getElementById('chkID').innerHTML = "8자리 이상 입력해주세요.";
+						$("#chkID").attr("disabled", "disabled"); 
+						
+					}else if(member_id.search(/\s/) != -1){
+						   document.getElementById('chkID').innerHTML = "아이디는 공백 없이 입력해주세요.";
+							$("#idChk").attr("disabled", "disabled"); 
+						  return false;
+					 }
+					
+					else {
+						$("#chkID").css("color", "red");
+						$("#chkID").html("아이디를 입력해주세요.");
 						$("#idChk").attr("value", "N");
 						$("#submit").attr("disabled", "disabled"); 
 					}
 				}
 			})
 		}
+	//Id 조건 확인
+	 function chkID(){
+
+		 var member_id = $("#member_id").val();
+		 var num = member_id.search(/[0-9]/g); 
+
+		 if(member_id.length<8){ 
+		   document.getElementById('chkID').innerHTML = "8자리 이상 입력해주세요.";
+			$("#idChk").attr("disabled", "disabled"); 
+		  return false;
+		  
+		 }else if(member_id.search(/\s/) != -1){
+		   document.getElementById('chkID').innerHTML = "아이디는 공백 없이 입력해주세요.";
+			$("#idChk").attr("disabled", "disabled"); 
+		  return false;
+		  
+		 }else { 
+			 document.getElementById('chkID').innerHTML = "";
+			$("#idChk").removeAttr("disabled");
+		    return true;
+		 }
+
+		}
+	 
+	 
+	//비밀번호 조건
+	 function chkPW(){
+
+		 var pw = $("#password").val();
+		 var num = pw.search(/[0-9]/g);
+		 var eng = pw.search(/[a-z]/ig);
+		 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+		 if(pw.length < 8 || pw.length > 20){ 
+		   document.getElementById('chkPW').innerHTML = "8자리 ~ 20자리 이내로 입력해주세요.";
+		  return false;
+		 }else if(pw.search(/\s/) != -1){
+		  
+		   document.getElementById('chkPW').innerHTML = "비밀번호는 공백 없이 입력해주세요.";
+		  return false;
+		 }else if(num < 0 || eng < 0 || spe < 0 ){ 
+		  document.getElementById('chkPW').innerHTML = "영문,숫자, 특수문자를 혼합하여 입력해주세요.";
+		  return false;
+		 }else { 
+			 document.getElementById('chkPW').innerHTML = "사용가능합니다.";
+		    return true;
+		 }
+
+		}
+	 
 	// 비밀번호 맞는지 확인
-	 function checkPwd(){
+	 function duplicatePW(){
 		  
 		  var pw1 = $("#password").val();
 		  var pw2 = $("#checkPassword").val();
@@ -61,6 +127,9 @@
 		  }
 		  
 		 }
+	 
+	 
+
 	 
 	 //생년월일 확인
 	 function checkBirth(){
