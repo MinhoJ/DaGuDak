@@ -63,6 +63,7 @@ public class BoardController {
 
 	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String write() {
+		
 		return "board/write";
 	}
 
