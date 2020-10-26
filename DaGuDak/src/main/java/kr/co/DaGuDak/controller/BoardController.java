@@ -25,7 +25,7 @@ import kr.co.DaGuDak.service.BoardService;
 @RequestMapping("/board/*")
 public class BoardController {
 	
-	//nakyung
+	//nakyung//추가1
 	public int bid = 0;
 	
 	@Inject
