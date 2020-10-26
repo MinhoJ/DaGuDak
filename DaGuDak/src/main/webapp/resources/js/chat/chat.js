@@ -1,7 +1,7 @@
 var textarea = document.getElementById("messageWindow");
 var webSocket = new WebSocket('ws://192.168.0.151:8089/DaGuDak/racing');
 //당신의 url로 변경해두세요!.
-
+//정민호 바봉
 var inputMessage = document.getElementById('inputMessage');
     
     webSocket.onerror = function(event) {     onError(event)   };
