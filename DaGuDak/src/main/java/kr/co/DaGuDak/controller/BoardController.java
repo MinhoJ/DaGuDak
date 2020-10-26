@@ -25,188 +25,187 @@ import kr.co.DaGuDak.service.BoardService;
 @RequestMapping("/board/*")
 public class BoardController {
 	
-	//nakyung//추가1
-	public int bid = 0;
-	
-	@Inject
-	BoardService boardService;
+   public int bid = 0;
 
-	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
-			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage,
-			@RequestParam int bid, HttpSession session) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		
-		//bid가 null로 들어올 때는 변수 타입이 달라서, list() 자체가 실행되지 못하고 오류남
-		if(bid != 1 && bid != 2 && bid != 3 && bid != 4) {
-			mav.setViewName("home");
-			return mav;
-		}
-		
-		session.setAttribute("bid", bid);
-		this.bid = bid;
+   @Inject
+   BoardService boardService;
 
-		int count = boardService.countArticle(bid, searchOption, keyword);
-		BoardPager boardPager = new BoardPager(count, curPage);
-		int start = boardPager.getPageBegin();
-		int end = boardPager.getPageEnd();
-		
-		List<BoardVO> list = boardService.listAll(start, end, searchOption, keyword, bid);
-		Map<String, Object> map = new HashMap<String, Object>();
+   @RequestMapping(value = "list", method = RequestMethod.GET)
+   public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
+         @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage,
+         @RequestParam int bid, HttpSession session) throws Exception {
+      ModelAndView mav = new ModelAndView();
+      
+      //bid가 null로 들어올 때는 변수 타입이 달라서, list() 자체가 실행되지 못하고 오류남
+      if(bid != 1 && bid != 2 && bid != 3 && bid != 4) {
+         mav.setViewName("home");
+         return mav;
+      }
+      
+      session.setAttribute("bid", bid);
+      this.bid = bid;
 
-		map.put("list", list);
-		map.put("count", count);
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		map.put("boardPager", boardPager);
-		map.put("curPage", curPage);
+      int count = boardService.countArticle(bid, searchOption, keyword);
+      BoardPager boardPager = new BoardPager(count, curPage);
+      int start = boardPager.getPageBegin();
+      int end = boardPager.getPageEnd();
+      
+      List<BoardVO> list = boardService.listAll(start, end, searchOption, keyword, bid);
+      Map<String, Object> map = new HashMap<String, Object>();
 
-		mav.addObject("map", map);
-		mav.setViewName("board/list");
-		
-		System.out.println("comment count: "+list.get(4).getBno());
-		System.out.println("comment count: "+list.get(4).getCmtcount());
-		return mav;
-	}
+      map.put("list", list);
+      map.put("count", count);
+      map.put("searchOption", searchOption);
+      map.put("keyword", keyword);
+      map.put("boardPager", boardPager);
+      map.put("curPage", curPage);
 
-	@RequestMapping(value = "list", method = RequestMethod.POST)
-	public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
-			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage)
-			throws Exception {
+      mav.addObject("map", map);
+      mav.setViewName("board/list");
+      
+      System.out.println("comment count: "+list.get(4).getBno());
+      System.out.println("comment count: "+list.get(4).getCmtcount());
+      return mav;
+   }
 
-		ModelAndView mav = new ModelAndView();
-		System.out.println("BoardController.list(): searchOption=" + searchOption + ", keyword=" + keyword
-				+ ", curPage=" + curPage);
+   @RequestMapping(value = "list", method = RequestMethod.POST)
+   public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
+         @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage)
+         throws Exception {
 
-		int count = boardService.countArticle(bid, searchOption, keyword);
-		BoardPager boardPager = new BoardPager(count, curPage);
-		int start = boardPager.getPageBegin();
-		int end = boardPager.getPageEnd();
+      ModelAndView mav = new ModelAndView();
+      System.out.println("BoardController.list(): searchOption=" + searchOption + ", keyword=" + keyword
+            + ", curPage=" + curPage);
 
-		List<BoardVO> list = boardService.listAll(start, end, searchOption, keyword, bid);
-		Map<String, Object> map = new HashMap<String, Object>();
+      int count = boardService.countArticle(bid, searchOption, keyword);
+      BoardPager boardPager = new BoardPager(count, curPage);
+      int start = boardPager.getPageBegin();
+      int end = boardPager.getPageEnd();
 
-		map.put("list", list);
-		map.put("count", count);
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		map.put("boardPager", boardPager);
-		map.put("curPage", curPage);
+      List<BoardVO> list = boardService.listAll(start, end, searchOption, keyword, bid);
+      Map<String, Object> map = new HashMap<String, Object>();
 
-		mav.addObject("map", map);
-		mav.setViewName("board/list");
+      map.put("list", list);
+      map.put("count", count);
+      map.put("searchOption", searchOption);
+      map.put("keyword", keyword);
+      map.put("boardPager", boardPager);
+      map.put("curPage", curPage);
 
-		return mav;
-	}
+      mav.addObject("map", map);
+      mav.setViewName("board/list");
 
-	@RequestMapping(value = "write", method = RequestMethod.GET)
-	public ModelAndView write(@RequestParam(defaultValue = "title") String searchOption,
-			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage) {
-		ModelAndView mav = new ModelAndView();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		map.put("curPage", curPage);
-		mav.addObject("map", map);
-		mav.setViewName("board/write");
-		return mav;
-	}
+      return mav;
+   }
 
-	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	public String insert(@ModelAttribute BoardVO vo, HttpServletRequest request) throws Exception {
+   @RequestMapping(value = "write", method = RequestMethod.GET)
+   public ModelAndView write(@RequestParam(defaultValue = "title") String searchOption,
+         @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage) {
+      ModelAndView mav = new ModelAndView();
+      Map<String, Object> map = new HashMap<String, Object>();
+      map.put("searchOption", searchOption);
+      map.put("keyword", keyword);
+      map.put("curPage", curPage);
+      mav.addObject("map", map);
+      mav.setViewName("board/write");
+      return mav;
+   }
 
-		// pom.xml에 멀티파트 디펜던시 추가함
-		// list.jsp에 input hidden 값으로 bid 고정시켜둠. 세션처리 후 jsp 수정
-		System.out.println("BoardController.insert() : getTitle==" + vo.getTitle());
-		boardService.create(vo, request);
-		return "redirect:list?bid=" + bid;
-	}
+   @RequestMapping(value = "insert", method = RequestMethod.POST)
+   public String insert(@ModelAttribute BoardVO vo, HttpServletRequest request) throws Exception {
 
-	@RequestMapping(value = "content", method = RequestMethod.GET)
-	public ModelAndView content(@RequestParam("bno") int bno, @RequestParam(defaultValue = "title") String searchOption,
-			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage,
-			HttpSession session) throws Exception {
-		System.out.println("컨트롤러 content(): " + bid + ", " + bno);
-		ModelAndView mav = new ModelAndView();
-		Map<String, Object> map = new HashMap<String, Object>();
-		if(bid != 2)
-			boardService.increaseViewCnt(bid, bno, session);
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		map.put("curPage", curPage);
-		mav.addObject("map", map);
-		mav.setViewName("board/content");
-		mav.addObject("dto", boardService.read(bid, bno));
-		
-		List<BoardVO> commentList = boardService.commentList(bid, bno);
-		
-		mav.addObject("cmtList", commentList);
-		
-		return mav;
-	}
+      // pom.xml에 멀티파트 디펜던시 추가함
+      // list.jsp에 input hidden 값으로 bid 고정시켜둠. 세션처리 후 jsp 수정
+      System.out.println("BoardController.insert() : getTitle==" + vo.getTitle());
+      boardService.create(vo, request);
+      return "redirect:list?bid=" + bid;
+   }
 
-	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
-	public ModelAndView uppdateForm(@RequestParam("bno") int bno,
-			@RequestParam(defaultValue = "title") String searchOption, @RequestParam(defaultValue = "") String keyword,
-			@RequestParam(defaultValue = "1") int curPage) throws Exception {
-		ModelAndView mav = new ModelAndView();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("searchOption", searchOption);
-		map.put("keyword", keyword);
-		map.put("curPage", curPage);
-		mav.addObject("map", map);
+   @RequestMapping(value = "content", method = RequestMethod.GET)
+   public ModelAndView content(@RequestParam("bno") int bno, @RequestParam(defaultValue = "title") String searchOption,
+         @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int curPage,
+         HttpSession session) throws Exception {
+      System.out.println("컨트롤러 content(): " + bid + ", " + bno);
+      ModelAndView mav = new ModelAndView();
+      Map<String, Object> map = new HashMap<String, Object>();
+      if(bid != 2)
+         boardService.increaseViewCnt(bid, bno, session);
+      map.put("searchOption", searchOption);
+      map.put("keyword", keyword);
+      map.put("curPage", curPage);
+      mav.addObject("map", map);
+      mav.setViewName("board/content");
+      mav.addObject("dto", boardService.read(bid, bno));
+      
+      List<BoardVO> commentList = boardService.commentList(bid, bno);
+      
+      mav.addObject("cmtList", commentList);
+      
+      return mav;
+   }
 
-		mav.setViewName("board/update");
-		mav.addObject("dto", boardService.read(bid, bno));
-		return mav;
-	}
+   @RequestMapping(value = "updateForm", method = RequestMethod.GET)
+   public ModelAndView uppdateForm(@RequestParam("bno") int bno,
+         @RequestParam(defaultValue = "title") String searchOption, @RequestParam(defaultValue = "") String keyword,
+         @RequestParam(defaultValue = "1") int curPage) throws Exception {
+      ModelAndView mav = new ModelAndView();
+      Map<String, Object> map = new HashMap<String, Object>();
+      map.put("searchOption", searchOption);
+      map.put("keyword", keyword);
+      map.put("curPage", curPage);
+      mav.addObject("map", map);
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update(@ModelAttribute BoardVO vo, RedirectAttributes ra, HttpServletRequest request) throws Exception {
-		String url = "";
-		RedirectView rv = new RedirectView();
-		System.out.println(vo);
-		
-		boolean udpatePasswordCheck = boardService.update(vo, request);
-		ra.addFlashAttribute("udpatePasswordCheck", udpatePasswordCheck);
-		System.out.println("BoardController.update() passwordCheck: " + udpatePasswordCheck);
+      mav.setViewName("board/update");
+      mav.addObject("dto", boardService.read(bid, bno));
+      return mav;
+   }
 
-		
-		if (udpatePasswordCheck) {
-			url = "content?bno=" + vo.getBno();
-			rv.setUrl(url);
-			rv.setExposeModelAttributes(false);
-			return new ModelAndView(rv);
-		} else {
-			url = "content?bno=" + vo.getBno();
-			rv.setUrl(url);
-			rv.setExposeModelAttributes(false);
-			return new ModelAndView(rv);
-		}
-	}
+   @RequestMapping(value = "update", method = RequestMethod.POST)
+   public ModelAndView update(@ModelAttribute BoardVO vo, RedirectAttributes ra, HttpServletRequest request) throws Exception {
+      String url = "";
+      RedirectView rv = new RedirectView();
+      System.out.println(vo);
+      
+      boolean udpatePasswordCheck = boardService.update(vo, request);
+      ra.addFlashAttribute("udpatePasswordCheck", udpatePasswordCheck);
+      System.out.println("BoardController.update() passwordCheck: " + udpatePasswordCheck);
 
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute BoardVO vo, RedirectAttributes ra) throws Exception {
-		String url = "";
-		RedirectView rv = new RedirectView();
-		System.out.println(vo);
-		
-		boolean deletePasswordCheck = boardService.delete(vo);
-		ra.addFlashAttribute("passwordCheck", deletePasswordCheck);
-		System.out.println("passwordCheck: " + deletePasswordCheck);
+      
+      if (udpatePasswordCheck) {
+         url = "content?bno=" + vo.getBno();
+         rv.setUrl(url);
+         rv.setExposeModelAttributes(false);
+         return new ModelAndView(rv);
+      } else {
+         url = "content?bno=" + vo.getBno();
+         rv.setUrl(url);
+         rv.setExposeModelAttributes(false);
+         return new ModelAndView(rv);
+      }
+   }
 
-		if (deletePasswordCheck) {
-			url = "list?bid=" + bid;
-			rv.setUrl(url);
-			rv.setExposeModelAttributes(false);
-			return new ModelAndView(rv);
-		} else {
-			url = "content?bno=" + vo.getBno();
-			rv.setUrl(url);
-			rv.setExposeModelAttributes(false);
-			return new ModelAndView(rv);
-		}
-	}
-	
-	
+   @RequestMapping(value = "delete", method = RequestMethod.POST)
+   public ModelAndView delete(@ModelAttribute BoardVO vo, RedirectAttributes ra) throws Exception {
+      String url = "";
+      RedirectView rv = new RedirectView();
+      System.out.println(vo);
+      
+      boolean deletePasswordCheck = boardService.delete(vo);
+      ra.addFlashAttribute("passwordCheck", deletePasswordCheck);
+      System.out.println("passwordCheck: " + deletePasswordCheck);
+
+      if (deletePasswordCheck) {
+         url = "list?bid=" + bid;
+         rv.setUrl(url);
+         rv.setExposeModelAttributes(false);
+         return new ModelAndView(rv);
+      } else {
+         url = "content?bno=" + vo.getBno();
+         rv.setUrl(url);
+         rv.setExposeModelAttributes(false);
+         return new ModelAndView(rv);
+      }
+   }
+   
+   
 }
