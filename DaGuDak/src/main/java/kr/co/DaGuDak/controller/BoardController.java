@@ -25,7 +25,7 @@ public class BoardController {
 
 	@Inject
 	BoardService boardService;
-
+	//메롱
 	public ModelAndView mav = new ModelAndView();
 
 	@RequestMapping(value = "list")
