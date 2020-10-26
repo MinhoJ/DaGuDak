@@ -33,17 +33,20 @@
                </div>
                 
                      
-               <div class="col-md-11">
+                <div class="col-md-11">
                   <div class="form-group">
                   <label for=password>비밀번호</label> 
-                     <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" required>
+                     <input type="password" name="password" id="password"
+                        class="form-control" placeholder="비밀번호"  onkeyup="chkPW()" required>
+                       <div id="chkPW"></div>
                   </div>
                </div>
                
                <div class="col-md-11">
                   <div class="form-group">
                   <label for=checkPassword>비밀번호 확인</label> 
-                     <input type="password" name="checkPassword" id="checkPassword" class="form-control" onkeyup="checkPwd()"  placeholder="비밀번호 확인" required>
+                     <input type="password" name="checkPassword" id="checkPassword"
+                        class="form-control" onkeyup="duplicatePW()" placeholder="비밀번호 확인" required>
                      <div id="passwordChecked"></div>
                   </div>
                </div>
@@ -64,20 +67,15 @@
                 </div>
                     
                    
-                   
                     <div style="margin-left: auto;  margin-right: auto; margin-top: 20px; margin-bottom : 20px;">
                         <div class="form-group">
                            <input type="submit" value="완료" class="btn btn-primary py-3 px-5">
                             
                         </div>
                      </div>
-       
-
                   </div>
-               </form>
-               
+               </form>   
             </div>
-
             
          </div>
       </div>
