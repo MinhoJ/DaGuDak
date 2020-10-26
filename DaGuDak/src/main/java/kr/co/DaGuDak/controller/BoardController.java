@@ -24,10 +24,10 @@ import kr.co.DaGuDak.service.BoardService;
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
-	//main
 	
-	public int bid = 0;
 	//nakyung
+	public int bid = 0;
+	
 	@Inject
 	BoardService boardService;
 
