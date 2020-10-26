@@ -26,7 +26,7 @@ import kr.co.DaGuDak.service.BoardService;
 public class BoardController {
 
 	public int bid = 0;
-
+	//nakyung
 	@Inject
 	BoardService boardService;
 	
