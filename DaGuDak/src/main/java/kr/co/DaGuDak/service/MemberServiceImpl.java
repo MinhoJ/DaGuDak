@@ -53,18 +53,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public void deleteMember(String member_id) throws Exception {
+		dao.deleteMember(member_id);
+	}
+
+	@Override
 	public MemberVO userInfo(String member_id) throws Exception {
 		return dao.userInfo(member_id);
 	}
 
 	@Override
-	public boolean passwordChk(String member_id, MemberVO vo) throws Exception{
+	public boolean passwordChk(String member_id, MemberVO vo) throws Exception {
 		MemberVO vo2 = vo;
-		vo2.setMember_id(member_id);
-		
+		vo2.setMember_id(member_id); 
 		return dao.passwordChk(vo2);
 	}
-	
+
 	@Override
 	public void chargePoint(String member_id, int point) throws Exception {
 		MemberVO vo = new MemberVO();
@@ -76,7 +80,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int getPoint(String loginId) throws Exception {
 		MemberVO vo = dao.userInfo(loginId);
-		
 		return vo.getPoint();
 	}
+
 }

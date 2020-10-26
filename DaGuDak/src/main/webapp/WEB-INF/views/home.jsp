@@ -26,6 +26,12 @@
    alert("충전이 완료 되었습니다.");
    </script>
    </c:if>
+   <c:if test = "${deleteMessage eq '성공'}">
+   <script>
+   alert("잘가요..");
+   </script>
+  </c:if>
+   
  
    <div class="container">
       <div

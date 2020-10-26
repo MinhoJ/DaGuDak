@@ -1,12 +1,5 @@
 package kr.co.DaGuDak.service;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import kr.co.DaGuDak.dao.CommentDAO;
-import kr.co.DaGuDak.model.CommentVO;
-
 public class CommentServiceImpl /* implements CommentService */ {
 
 	/*

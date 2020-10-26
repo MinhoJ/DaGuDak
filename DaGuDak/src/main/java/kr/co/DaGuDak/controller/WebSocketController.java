@@ -15,7 +15,6 @@ import javax.websocket.server.ServerEndpoint;
 public class WebSocketController {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
-	
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);

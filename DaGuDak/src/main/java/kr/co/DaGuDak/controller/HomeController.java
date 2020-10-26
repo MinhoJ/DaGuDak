@@ -63,12 +63,7 @@ public class HomeController {
 
 		return "forum";
 	}
-
-	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public String myPage(Locale locale, Model model) {
-
-		return "myPage";
-	}
+ 
 
 	@RequestMapping(value = "/customerService", method = RequestMethod.GET)
 	public String customerServic(Locale locale, Model model) {
@@ -109,9 +104,9 @@ public class HomeController {
 		return "racingResult";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(Locale locale, Model model) {
-		return "member/register";
-	}
-
+	/*
+	 * @RequestMapping(value = "/register", method = RequestMethod.GET) public
+	 * String register(Locale locale, Model model) { return "member/register"; }
+	 */
+	   
 }
