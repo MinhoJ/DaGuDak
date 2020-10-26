@@ -24,12 +24,12 @@ import kr.co.DaGuDak.service.BoardService;
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
-
+	//main
+	
 	public int bid = 0;
 	//nakyung
 	@Inject
 	BoardService boardService;
-	
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
