@@ -27,7 +27,7 @@ public class BoardController {
    //main
    
    public int bid = 0;
-   //nakyung
+
    @Inject
    BoardService boardService;
 
