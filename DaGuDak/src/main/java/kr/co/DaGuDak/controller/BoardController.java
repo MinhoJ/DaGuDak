@@ -25,7 +25,7 @@ import kr.co.DaGuDak.service.BoardService;
 @RequestMapping("/board/*")
 public class BoardController {
    
-	//minhho
+	//minho
    public int bid = 0;
 
    @Inject
