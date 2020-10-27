@@ -21,9 +21,7 @@
                         <li><a href="/DaGuDak/news"><span class="fa fa-chevron-right mr-2"></span>관련 뉴스</a></li>
                   </ul>
                </div>
-            </div>
-            
-            
+            </div>   
             <div class="col-lg col-md-6">
                <div class="ftco-footer-widget">
                   <h2 class="ftco-heading-2">경마</h2>
