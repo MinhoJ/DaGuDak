@@ -44,32 +44,7 @@
 				}
 			})
 		}
-	/*//Id 조건 확인
-	 function chkID(){
-
-		 var member_id = $("#member_id").val();
-		 var num = member_id.search(/[0-9]/g); 
-
-		 if(member_id.length<8){ 
-		   document.getElementById('chkID').innerHTML = "8자리 이상 입력해주세요.";
-			$("#idChk").attr("disabled", "disabled"); 
-		  return false;
-		  
-		 }else if(member_id.search(/\s/) != -1){
-		   document.getElementById('chkID').innerHTML = "아이디는 공백 없이 입력해주세요.";
-			$("#idChk").attr("disabled", "disabled"); 
-		  return false;
-		  
-		 }else { 
-			 document.getElementById('chkID').innerHTML = "";
-			$("#idChk").removeAttr("disabled");
-		    return true;
-		 }
-
-		}*/
-	 
-	 
-	//비밀번호 조건
+	
 	 function chkPW(){
 
 		 var pw = $("#password").val();
