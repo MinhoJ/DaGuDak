@@ -6,17 +6,12 @@
    alert("비밀번호가 틀립니다.");
    </script>
   </c:if>
-   
-
 <section class="ftco-section bg-light">
-
       <div class="container">
-      
          <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section text-center ftco-animate">
                <span class="subheading">withdrawal</span>
                <h2 class="mb-4">회원 탈퇴</h2>
-                
             </div>
          </div>
           
@@ -45,9 +40,6 @@
                   </div>
                </form>     
             </div>
-
          </div> 
-         
-         </div>
-         
-         </section>
+    </div>
+ </section>

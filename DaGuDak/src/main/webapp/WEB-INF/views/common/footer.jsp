@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
- 
-    
 <footer class="ftco-footer">
       <div class="container mb-5 pb-4">
          <div class="row">
@@ -11,7 +9,6 @@
                   <p>경마는 그닥...<br><br>내 마음으로<br><b>다그닥 다그닥♥</b></p>
                </div>
             </div> 
-          
             <div class="col-lg col-md-6">
                <div class="ftco-footer-widget">
                   <h2 class="ftco-heading-2">게시판</h2>
