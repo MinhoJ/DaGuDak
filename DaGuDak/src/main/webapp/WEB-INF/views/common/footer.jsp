@@ -61,7 +61,7 @@
                <div class="ftco-footer-widget">
                   <h2 class="ftco-heading-2">마이페이지</h2>
                   <ul class="list-unstyled">
-                     <li><a href="/DaGuDak/myPage"><span class="fa fa-chevron-right mr-2"></span>내 정보 수정</a></li>
+                     <li><a href="/DaGuDak/member/myPage"><span class="fa fa-chevron-right mr-2"></span>내 정보 수정</a></li>
                      <li><a href="/DaGuDak/member/pointBank"><span class="fa fa-chevron-right mr-2"></span>포인트 충전</a></li>
                      <li><a href="/DaGuDak/bettingHistory"><span class="fa fa-chevron-right mr-2"></span>베팅 히스토리</a></li>
                   </ul>
@@ -121,7 +121,7 @@
                         </div>
                         
                         <div>
-                            <input type="checkbox" > 아이디 기억하기
+                            <input type="checkbox" value="" > 아이디 기억하기
                          
                         </div>
                       

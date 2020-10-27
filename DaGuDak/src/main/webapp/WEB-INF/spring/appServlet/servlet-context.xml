@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kr.co.DaGuDak" />
+	<context:component-scan base-package="kr.co.DaGuDak" /> 
 	
 	<!-- MultipartResolver 설정 -->
 	<beans:bean id="multipartResolver"
