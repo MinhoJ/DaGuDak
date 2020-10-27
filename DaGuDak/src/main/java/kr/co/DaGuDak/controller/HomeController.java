@@ -104,9 +104,4 @@ public class HomeController {
 		return "racingResult";
 	}
 	
-	@RequestMapping(value = "/j", method = RequestMethod.GET)
-	public String j(Locale locale, Model model) {
-		return "j";
-	}
-	
 }
