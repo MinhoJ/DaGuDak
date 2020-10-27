@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.websocket.Session;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -103,7 +105,10 @@ public class HomeController {
 	public String racingResult(Locale locale, Model model) {
 		return "racingResult";
 	}
+	
 
+	
+	
 	/*
 	 * @RequestMapping(value = "/register", method = RequestMethod.GET) public
 	 * String register(Locale locale, Model model) { return "member/register"; }
