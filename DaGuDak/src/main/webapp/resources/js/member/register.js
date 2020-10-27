@@ -1,8 +1,7 @@
 //id 중복확인   ajax
 function fn_idChk() {
 	$.ajax({
-				url : "/DaGuDak/member/idChk?member_id="
-						+ $("#member_id").val(),
+				url : "/DaGuDak/member/idChk?member_id=" + $("#member_id").val(),
 				type : "get",
 				success : function(data) {
 

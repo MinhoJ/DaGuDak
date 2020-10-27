@@ -82,7 +82,7 @@ public class MemberController {
 				model.addAttribute("loginResult", "성공");
 				 
 				Cookie cookie = new Cookie("member_id", vo.getMember_id()); 
-				cookie.setMaxAge(60*60*24*30);  //30일
+				cookie.setMaxAge(60*60*24*7);  
 				cookie.setPath("/");  //모든경로에서 접근 가능.
 				response.addCookie(cookie);
 				
