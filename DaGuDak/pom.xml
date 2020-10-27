@@ -240,22 +240,12 @@
 		<!-- 파일 업로드, servlet-context.xml에 MultipartResolver도 추가하기 -->
 
 		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
-<<<<<<< HEAD
-	<dependency>
-    	<groupId>javax.websocket</groupId>
-    	<artifactId>javax.websocket-api</artifactId>
-   		<version>1.1</version>
-    	<scope>provided</scope>
-	</dependency>
-
-=======
 		<dependency>
 			<groupId>javax.websocket</groupId>
 			<artifactId>javax.websocket-api</artifactId>
 			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
->>>>>>> branch 'minho' of https://github.com/MinhoJ/DaGuDak.git
 
 	</dependencies>
 	<build>
