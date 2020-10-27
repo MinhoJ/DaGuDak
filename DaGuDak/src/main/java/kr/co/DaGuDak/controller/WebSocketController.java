@@ -11,6 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+
 @ServerEndpoint("/racing")
 public class WebSocketController {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
