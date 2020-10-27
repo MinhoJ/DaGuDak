@@ -32,19 +32,25 @@
                </div>
                <div class="modal-body p-4 p-md-5">
                <!-- 로그인 form -->
-                <form name="loginForm" action="${pageContext.request.contextPath}/member/loginCheck" class="appointment-form ftco-animate" method="post">
+                    <form name="loginForm" action="${pageContext.request.contextPath}/member/loginCheck" class="appointment-form ftco-animate" method="post">
                      <h3><span style="align-content: center;">로그인</span></h3>
                      <div class="">
                         <div class="form-group">
                            <input type="text" name="member_id" id="member_id" class="form-control" placeholder="아이디" onkeyup="javascript:keyevent(this);">
-                        </div>
+                        </div> 
                          <div class="form-group">
                            <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" onkeyup="javascript:keyevent(this);">
                         </div>
+                        
+                        <div>
+                            <input type="checkbox" id="idSaveCheck"> 아이디 기억하기
+                         
+                        </div>
+                      
                         <div class="form-group">
                            <input type="submit" id="submit" onclick="login()" class="btn btn-primary py-3 px-4" value="로그인">
                         </div>
-                     </div>
+                     </div> 
                   </form>
                   <!-- 로그인 form 끝 -->
                   
@@ -60,3 +66,4 @@
     </div>   
  </section>
     <script src="<c:url value="/resources/js/member/login.js" />"></script>
+       <script src="<c:url value="/resources/js/member/cookie.js" />"></script>

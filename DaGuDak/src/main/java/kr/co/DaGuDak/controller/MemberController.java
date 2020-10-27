@@ -85,9 +85,7 @@ public class MemberController {
             cookie.setMaxAge(60*60*24*7);  
             cookie.setPath("/");  //모든경로에서 접근 가능.
             response.addCookie(cookie);
-            
-            System.out.println(cookie +"쿠키 확인!!");
-            
+                        
             model.addAttribute(cookie);
             mv.setViewName("home");
  
