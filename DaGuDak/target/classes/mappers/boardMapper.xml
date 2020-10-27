@@ -43,9 +43,13 @@
 		content,
 		writer,
 		regdate,
-		viewcnt
+		viewcnt,
+		(SELECT count(*)
+		FROM COMMENTS
+		WHERE b.bid = bid
+		AND b.bno = bno) as cmtcount
 		FROM
-		board
+		board b
 		<include refid="search" />
 		ORDER BY
 		bno desc,
@@ -63,10 +67,10 @@
 
 	<insert id="insert">
 		INSERT INTO
-      board(bid,bno,reply,title,content,writer,password,file_name,file_rename,file_size)
-      VALUES(#{bid},(SELECT
-      NVL(MAX(bno)+1,1)
-      FROM board where bid = #{bid}),#{reply},#{title},#{content},#{writer},#{password},#{file_name},#{file_rename},#{file_size})
+		board(bid,bno,reply,title,content,writer,password,file_name,file_rename,file_size)
+		VALUES(#{bid},(SELECT
+		NVL(MAX(bno)+1,1)
+		FROM board where bid = #{bid}),#{reply},#{title},#{content},#{writer},#{password},#{file_name},#{file_rename},#{file_size})
 	</insert>
 
 	<select id="view" resultType="BoardVO">
@@ -84,17 +88,29 @@
 	<update id="updateArticle">
 		UPDATE board SET
 		title = #{title},
-		content =
-		#{content},
-		writer = #{writer}
+		content = #{content}
 		WHERE bid = #{bid}
 		AND bno = #{bno}
+		AND password = #{password}
+	</update>
+	
+	<update id="updateArticleWithFile">
+		UPDATE board SET
+		title = #{title},
+		content = #{content},
+		file_name = #{file_name},
+		file_rename = #{file_rename},
+		file_size = #{file_size}
+		WHERE bid = #{bid}
+		AND bno = #{bno}
+		AND password = #{password}
 	</update>
 
 	<delete id="deleteArticle">
 		DELETE FROM board
 		WHERE bid = #{bid}
 		AND bno = #{bno}
+		AND password = #{password}
 	</delete>
-
+	
 </mapper>

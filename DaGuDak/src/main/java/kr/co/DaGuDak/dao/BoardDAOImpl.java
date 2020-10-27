@@ -31,18 +31,24 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void update(BoardVO vo) throws Exception {
-		SqlSession.update("board.updateArticle", vo);
-
+	public boolean update(BoardVO vo) throws Exception {
+		int result = 0;
+		if(vo.getFile().isEmpty())
+			result = SqlSession.update("board.updateArticle", vo);
+		else
+			result = SqlSession.update("board.updateArticleWithFile", vo);
+		
+		return result == 1 ? true : false;
 	}
 
 	@Override
-	public void delete(int bid, int bno) throws Exception {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("bid", bid);
-		map.put("bno", bno);
-		int result = SqlSession.delete("board.deleteArticle", map);
+	public boolean delete(BoardVO vo) throws Exception {
+		
+		int result = SqlSession.delete("board.deleteArticle", vo);
+		
 		System.out.println("BoardDAOImpl.delete(): result == " + result);
+		
+		return result == 1 ? true : false;
 	}
 
 	@Override

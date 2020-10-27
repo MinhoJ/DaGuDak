@@ -1,3 +1,3 @@
-function updateFormBtn(bid, bno) {
-	location.href='updateForm?bid=' + bid + '&bno='+bno
+function updateFormBtn(bno) {
+	location.href='updateForm?bno='+bno
 }

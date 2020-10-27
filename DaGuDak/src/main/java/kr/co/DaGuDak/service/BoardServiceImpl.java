@@ -1,15 +1,30 @@
 package kr.co.DaGuDak.service;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -38,6 +53,7 @@ public class BoardServiceImpl implements BoardService {
 		writer = writer.replace("  ", "&nbsp;&nbsp;");
 
 		content = content.replace("\n", "<br>");
+		
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setWriter(writer);
@@ -50,20 +66,45 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO read(int bid, int bno) throws Exception {
-		return boardDao.read(bid, bno);
+		if(bid != 2)
+			return boardDao.read(bid, bno);
+		else {
+			BoardVO vo = new BoardVO();
+			vo = this.newsList().get(bno-1);
+			return vo;
+		}
+ 			
+			
 	}
 
 	@Override
-	public void update(BoardVO vo, HttpServletRequest request) throws Exception {
+	public boolean update(BoardVO vo, HttpServletRequest request) throws Exception {
+		String title = vo.getTitle();
+		String content = vo.getContent();
+		String writer = vo.getWriter();
+
+		title = title.replace("<", "&lt;");
+		title = title.replace(">", "&gt;");
+		writer = writer.replace("<", "&lt;");
+		writer = writer.replace(">", "&gt;");
+
+		title = title.replace("  ", "&nbsp;&nbsp;");
+		writer = writer.replace("  ", "&nbsp;&nbsp;");
+
+		content = content.replace("\n", "<br>");
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setWriter(writer);
+		
 		if(vo.getFile().isEmpty() == false)
 			insertFile(vo, request);
-		boardDao.update(vo);
+		
+		return boardDao.update(vo);
 	}
 
 	@Override
-	public void delete(int bid, int bno) throws Exception {
-		boardDao.delete(bid, bno);
-
+	public boolean delete(BoardVO vo) throws Exception {
+		return boardDao.delete(vo);
 	}
 
 	@Override
@@ -84,8 +125,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> listAll(int start, int end, String searchOption, String keyword, int bid) throws Exception {
-		System.out.println("BoardServiceImpl.listAll(): bid == " + bid);
-		return boardDao.listAll(start, end, searchOption, keyword, bid);
+		if(bid ==2 )
+			return this.newsList();
+		else if(bid != 2)
+			return boardDao.listAll(start, end, searchOption, keyword, bid);
+		else
+			return null;
 	}
 
 	@Override
@@ -96,11 +141,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertFile(BoardVO vo, HttpServletRequest request)
 			throws IllegalStateException, IOException {
+		System.out.println("BoardServiceImpl.insertFile() 실행됨");
 		
 		MultipartHttpServletRequest mpRequest = (MultipartHttpServletRequest)request;
 
 		String root_path = mpRequest.getSession().getServletContext().getRealPath("/");
-		String attach_path = "resources/upload/";
+		String attach_path = "resources\\upload\\";
 		String file_name;
 		String fileExtension;
 		String file_rename;
@@ -127,11 +173,117 @@ public class BoardServiceImpl implements BoardService {
 				vo.setFile_name(file_name);
 				vo.setFile_rename(file_rename);
 				vo.setFile_size(file_size);
-				file = new File(root_path + attach_path + file_name);
-				System.out.println("root_path" + root_path);
+				file = new File(root_path + attach_path + file_rename);
 				multipartFile.transferTo(file);
 				vo.setFile(multipartFile);
 			}
+		}
+	}
+
+	public List<BoardVO> newsList() throws Exception {
+		String clientId = "HogT66eRHJjDf33HyC3i"; // 애플리케이션 클라이언트 아이디값"
+		String clientSecret = "OaVcxI1jSW"; // 애플리케이션 클라이언트 시크릿값"
+
+		String text = null;
+		try {
+			text = URLEncoder.encode("경마", "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException("검색어 인코딩 실패", e);
+		}
+
+		String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text 
+				+ "&display=10&sort=sim"; // display : 검색 결과 개수 제한, 기본값 10//sort : sim (유사도순), date (날짜순, 기본값)
+		// String apiURL = "https://openapi.naver.com/v1/search/news.xml?query="+ text;
+		// // xml 결과
+		
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		requestHeaders.put("X-Naver-Client-Id", clientId);
+		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+		String responseBody = this.getNews(apiURL, requestHeaders);
+		JSONParser parser = new JSONParser();
+		JSONObject jsonObj = null;
+
+		try {
+			jsonObj = (JSONObject) parser.parse(responseBody);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		List<BoardVO> newsList = new ArrayList<BoardVO>();
+		
+		System.out.println(jsonObj.get("lastBuildDate"));	//검색결과 생성 시간
+		System.out.println(jsonObj.get("total"));			//검색 결과의 총 개수
+		System.out.println(jsonObj.get("display"));			//URL에서 설정했던 검색 결과 개수 제한
+		
+		JSONArray jsonArr = (JSONArray)jsonObj.get("items"); //개별 검색 결과
+		//System.out.println(jsonArr);
+		Iterator<Object> iter = jsonArr.iterator();
+		
+		int i = 1;
+		while(iter.hasNext()) {
+			BoardVO vo = new BoardVO();
+			JSONObject item = (JSONObject) iter.next();
+			vo.setTitle((String)item.get("title"));
+			String url = (String)item.get("originallink");
+			vo.setContent((String)item.get("description")+"<br><br><br>출처 바로가기: <a href='" + url + "'>" + url + "</a>");
+			String pubDate = (String) item.get("pubDate");
+			Date date = new Date(pubDate);
+			vo.setRegdate(date);
+			vo.setBid(2);
+			vo.setBno(i++);
+			vo.setWriter("외부 사이트");
+			newsList.add(vo);
+		}
+		System.out.println(newsList.size());
+		System.out.println(newsList.get(0).getTitle());
+		System.out.println(newsList.get(1).getTitle());
+		return newsList;
+	}
+	
+	private String getNews(String apiUrl, Map<String, String> requestHeaders) {
+		HttpURLConnection con = connect(apiUrl);
+		try {
+			con.setRequestMethod("GET");
+			for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
+				con.setRequestProperty(header.getKey(), header.getValue());
+			}
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
+				return readBody(con.getInputStream());
+			} else { // 에러 발생
+				return readBody(con.getErrorStream());
+			}
+		} catch (IOException e) {
+			throw new RuntimeException("API 요청과 응답 실패", e);
+		} finally {
+			con.disconnect();
+		}
+	}
+
+	private static HttpURLConnection connect(String apiUrl) {
+		try {
+			URL url = new URL(apiUrl);
+			return (HttpURLConnection) url.openConnection();
+		} catch (MalformedURLException e) {
+			throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+		} catch (IOException e) {
+			throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+		}
+	}
+
+	private static String readBody(InputStream body) {
+		InputStreamReader streamReader = new InputStreamReader(body);
+
+		try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+			StringBuilder responseBody = new StringBuilder();
+			String line;
+			while ((line = lineReader.readLine()) != null) {
+				responseBody.append(line);
+			}
+			return responseBody.toString();
+		} catch (IOException e) {
+			throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
 		}
 	}
 }

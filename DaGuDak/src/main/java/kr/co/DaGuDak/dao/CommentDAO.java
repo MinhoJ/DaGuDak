@@ -5,11 +5,12 @@ import java.util.List;
 import kr.co.DaGuDak.model.CommentVO;
 
 public interface CommentDAO {
-	public List<CommentVO> list(int bno);
+	
+	public List<CommentVO> list(int bid, int bno) throws Exception;
 
-	public void create(CommentVO vo);
+	public void create(CommentVO vo) throws Exception;
 
-	public void update(CommentVO vo);
+	public boolean update(CommentVO vo) throws Exception;
 
-	public void delete(int rno);
+	public boolean delete(int cmtno, String cmt_password) throws Exception;
 }

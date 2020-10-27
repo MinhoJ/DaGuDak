@@ -1,25 +1,68 @@
 package kr.co.DaGuDak.service;
 
-public class CommentServiceImpl /* implements CommentService */ {
+import java.util.List;
 
-	/*
-	 * @Inject CommentDAO commentDao;
-	 * 
-	 * @Override public List<CommentVO> list(int bno) { return commentDao.list(bno);
-	 * }
-	 * 
-	 * @Override public void create(CommentVO vo) { commentDao.create(vo);
-	 * 
-	 * }
-	 * 
-	 * @Override public void update(CommentVO vo) {
-	 * 
-	 * 
-	 * }
-	 * 
-	 * @Override public void delete(int rno) {
-	 * 
-	 * }
-	 */
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.co.DaGuDak.dao.CommentDAO;
+import kr.co.DaGuDak.model.CommentVO;
+
+@Service
+public class CommentServiceImpl implements CommentService {
+
+	@Inject
+	CommentDAO commentDao;
+
+	@Override
+	public List<CommentVO> list(int bid, int bno) throws Exception {
+		return commentDao.list(bid, bno);
+	}
+
+	@Override
+	public void create(CommentVO vo) throws Exception {
+		String cmt_writer = vo.getCmt_writer();
+		String cmt_content = vo.getCmt_content();
+
+		cmt_writer = cmt_writer.replace("<", "&lt;");
+		cmt_writer = cmt_writer.replace(">", "&gt;");
+		cmt_content = cmt_content.replace("<", "&lt;");
+		cmt_content = cmt_content.replace(">", "&gt;");
+
+		cmt_writer = cmt_writer.replace("  ", "&nbsp;&nbsp;");
+		cmt_content = cmt_content.replace("  ", "&nbsp;&nbsp;");
+		cmt_content = cmt_content.replace("\n", "<br>");
+		
+		vo.setCmt_writer(cmt_writer);
+		vo.setCmt_content(cmt_content);
+		
+		commentDao.create(vo);
+	}
+
+	@Override
+	public boolean update(CommentVO vo) throws Exception {
+		String cmt_writer = vo.getCmt_writer();
+		String cmt_content = vo.getCmt_content();
+
+		cmt_writer = cmt_writer.replace("<", "&lt;");
+		cmt_writer = cmt_writer.replace(">", "&gt;");
+		cmt_content = cmt_content.replace("<", "&lt;");
+		cmt_content = cmt_content.replace(">", "&gt;");
+
+		cmt_writer = cmt_writer.replace("  ", "&nbsp;&nbsp;");
+		cmt_content = cmt_content.replace("  ", "&nbsp;&nbsp;");
+		cmt_content = cmt_content.replace("\n", "<br>");
+		
+		vo.setCmt_writer(cmt_writer);
+		vo.setCmt_content(cmt_content);
+		
+		return commentDao.update(vo);
+	}
+
+	@Override
+	public boolean delete(int cmtno, String cmt_password) throws Exception {
+		return commentDao.delete(cmtno, cmt_password);
+	}
 
 }
