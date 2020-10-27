@@ -96,8 +96,7 @@
                         </div> 
                          <div class="form-group">
                            <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" onkeyup="javascript:keyevent(this);">
-                        </div>
-                        
+                        </div>      
                         <div>
                             <input type="checkbox" id="idSaveCheck"> 아이디 기억하기
                          
