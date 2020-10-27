@@ -45,7 +45,9 @@ public class CommentController {
 	public ModelAndView list(@RequestParam("bid") int bid, @RequestParam("bno") int bno, ModelAndView mav) throws Exception {
 		List<CommentVO> list = commentService.list(bid, bno);
 		mav.setViewName("board/commentList");
-		mav.addObject("list", list);
+		mav.addObject("cmtList", list);
+		System.out.println("comment.list() 실행");
+		System.out.println(list.get(0));
 		return mav;
 	}
 	

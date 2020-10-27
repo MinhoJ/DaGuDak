@@ -13,7 +13,8 @@ alert("비밀번호가 일치하지 않습니다.");
 </script>
 </c:if>
 
-<script src="<c:url value="/resources/js/board/commentList.js" />"></script>
+<script src="<c:url value="/resources/js/comment/commentList.js" />"></script>
+
 <section class="ftco-section contact-section ftco-no-pb"
 	id="contact-section">
 	<div class="container">
@@ -94,7 +95,7 @@ alert("비밀번호가 일치하지 않습니다.");
 		<c:if test="${bid == '3'}">
 				<!-- 댓글 내용 -->
 				<div id="commentList"></div>
-				
+				<script> commentList(${sessionScope.bid}, ${dto.bno})  </script>
 				<!-- 댓글 입력창 -->
 				<div class="mx-5 mt-4" align="center">
 					<ul class="comment-list">

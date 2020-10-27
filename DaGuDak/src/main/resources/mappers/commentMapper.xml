@@ -10,7 +10,7 @@
 		WHERE bid = #{bid}
 		AND bno = #{bno}
 		ORDER BY
-		cmtno desc,	regdate desc
+		cmtno desc,	cmt_regdate desc
 	</select>
 
 	<insert id="insertComment">
