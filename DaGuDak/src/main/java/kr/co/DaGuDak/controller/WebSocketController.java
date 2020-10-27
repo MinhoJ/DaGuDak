@@ -46,15 +46,11 @@ public class WebSocketController {
 
 	@OnOpen
 	public void onOpen(Session session) {
-		System.out.println("aasdf");
-		// Add session to the connected sessions set
 		clients.add(session);
 	}
 
 	@OnClose
 	public void onClose(Session session) {
-		System.out.println("aaaa");
-		// Remove session from the connected sessions set
 		clients.remove(session);
 	}
 }
