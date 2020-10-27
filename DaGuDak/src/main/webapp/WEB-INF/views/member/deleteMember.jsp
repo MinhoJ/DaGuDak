@@ -50,14 +50,7 @@
                   </div>
                </form>     
             </div>
-
-  <c:if test = "${deleteMessage eq '실패'}">
-   <script>
-   alert("비밀번호가 틀립니다.");
-   </script>
-  </c:if>
    
-
 <section class="ftco-section bg-light">
 
       <div class="container">
