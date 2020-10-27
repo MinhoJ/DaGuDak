@@ -32,18 +32,20 @@
                   </div>
                </div>
                 
-                     
                <div class="col-md-11">
                   <div class="form-group">
                   <label for=password>비밀번호</label> 
-                     <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" required>
+                     <input type="password" name="password" id="password"
+                        class="form-control" placeholder="비밀번호"  onkeyup="chkPW()" required>
+                       <div id="chkPW"></div>
                   </div>
                </div>
                
                <div class="col-md-11">
                   <div class="form-group">
                   <label for=checkPassword>비밀번호 확인</label> 
-                     <input type="password" name="checkPassword" id="checkPassword" class="form-control" onkeyup="checkPwd()"  placeholder="비밀번호 확인" required>
+                     <input type="password" name="checkPassword" id="checkPassword"
+                        class="form-control" onkeyup="duplicatePW()" placeholder="비밀번호 확인" required>
                      <div id="passwordChecked"></div>
                   </div>
                </div>

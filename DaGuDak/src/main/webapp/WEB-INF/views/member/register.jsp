@@ -27,14 +27,7 @@
                        <div id="chkID"></div>
                   </div>
                </div>
-
-        <!--        <div class="col-md-11">
-                  <div id="idChecked" style="float: left;"></div>
-                  <button class="btn btn-dark" type="button" id="idChk" name="idChk"   onclick="fn_idChk();" value="N"
-                          style="float: right; margin-top: 5px; margin-bottom: 5px;">중복확인
-                   </button>
-               </div> -->
-
+ 
                <div class="col-md-11">
                   <div class="form-group">
                   <label for=password>비밀번호</label> 

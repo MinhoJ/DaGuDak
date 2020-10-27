@@ -63,7 +63,6 @@ public class HomeController {
 
 		return "forum";
 	}
- 
 
 	@RequestMapping(value = "/customerService", method = RequestMethod.GET)
 	public String customerServic(Locale locale, Model model) {
@@ -103,5 +102,10 @@ public class HomeController {
 	public String racingResult(Locale locale, Model model) {
 		return "racingResult";
 	}
-	   
+
+	@RequestMapping(value = "/j", method = RequestMethod.GET)
+	public String j(Locale locale, Model model) {
+		return "j";
+	}
+
 }
