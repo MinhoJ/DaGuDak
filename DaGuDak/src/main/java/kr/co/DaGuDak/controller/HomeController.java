@@ -103,13 +103,5 @@ public class HomeController {
 	public String racingResult(Locale locale, Model model) {
 		return "racingResult";
 	}
-	
-
-	
-	
-	/*
-	 * @RequestMapping(value = "/register", method = RequestMethod.GET) public
-	 * String register(Locale locale, Model model) { return "member/register"; }
-	 */
 	   
 }
