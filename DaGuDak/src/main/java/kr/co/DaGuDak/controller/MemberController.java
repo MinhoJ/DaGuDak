@@ -86,6 +86,8 @@ public class MemberController {
 				cookie.setPath("/");  //모든경로에서 접근 가능.
 				response.addCookie(cookie);
 				
+				System.out.println(cookie +"쿠키 확인!!");
+				
 				model.addAttribute(cookie);
 				mv.setViewName("home");
  
@@ -209,7 +211,7 @@ public class MemberController {
 			mv.setViewName("home");
 		} else {
 
-			vo = service.userInfo(loginId);
+			vo = service.userInfo(loginId);  
 			model.addAttribute("vo", vo);
 			model.addAttribute("chargePoint", "실패");
 			mv.setViewName("member/pointBank");
