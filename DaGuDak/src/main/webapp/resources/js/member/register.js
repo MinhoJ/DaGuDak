@@ -91,10 +91,7 @@
         }
         
        }
-    
-    
 
-    
     //생년월일 확인
     function checkBirth(){
        var birth = $('#birth').val();
