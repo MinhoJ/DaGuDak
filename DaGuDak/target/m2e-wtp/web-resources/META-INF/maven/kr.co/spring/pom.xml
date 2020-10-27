@@ -224,7 +224,7 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-	
+
 
 		<!-- MultipartHttpServletRequset 파일 업로드 위한 것 -->
 		<dependency>
@@ -238,6 +238,15 @@
 			<version>1.2.2</version>
 		</dependency>
 		<!-- 파일 업로드, servlet-context.xml에 MultipartResolver도 추가하기 -->
+
+		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+<dependency>
+    <groupId>javax.websocket</groupId>
+    <artifactId>javax.websocket-api</artifactId>
+    <version>1.1</version>
+    <scope>provided</scope>
+</dependency>
+
 
 	</dependencies>
 	<build>
