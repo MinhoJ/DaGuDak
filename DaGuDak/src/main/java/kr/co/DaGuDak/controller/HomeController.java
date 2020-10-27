@@ -104,4 +104,9 @@ public class HomeController {
 		return "racingResult";
 	}
 	   
+	
+	@RequestMapping(value = "/j")
+	public String j(Model model) {
+		return "j";
+	}
 }
