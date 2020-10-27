@@ -1,12 +1,15 @@
 package kr.co.DaGuDak.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,8 +69,10 @@ public class MemberController {
 	}
 
 	// 로그인 여부
+	
 	@RequestMapping(value = "loginCheck", method = RequestMethod.POST)
-	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, HttpSession session, Model model) throws Exception {
+	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, @CookieValue(value="cookie", required=true, defaultValue="0") String value, 
+									HttpSession session, Model model, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		boolean result = false;
@@ -75,10 +80,19 @@ public class MemberController {
 			result = service.loginCheck(vo, session);
 			if (result == true) {
 				model.addAttribute("loginResult", "성공");
+				 
+				Cookie cookie = new Cookie("member_id", vo.getMember_id()); 
+				cookie.setMaxAge(60*60*24*30);  //30일
+				cookie.setPath("/");  //모든경로에서 접근 가능.
+				response.addCookie(cookie);
+				
+				model.addAttribute(cookie);
 				mv.setViewName("home");
+ 
+				 
 			} else {
 				model.addAttribute("loginResult", "비밀번호 문제");
-				mv.setViewName("home");
+				mv.setViewName("home"); 
 			}
 		} else {
 			model.addAttribute("loginResult", "아이디 문제");

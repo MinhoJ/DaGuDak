@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 
-   
-
-   
   <c:if test = "${deleteMessage eq '실패'}">
    <script>
    alert("비밀번호가 틀립니다.");
@@ -31,7 +27,7 @@
                   
                      <div class="col-md-12">
                         <div class="form-group">
-                           <input type="text" id ="member_id" name="member_id" class="form-control"  value="${vo.member_id}"  required>
+                           <input type="text" id ="member_id" name="member_id" readonly="readonly" class="form-control"  value="${vo.member_id}"  required>
                         </div>
                      </div>
                      
