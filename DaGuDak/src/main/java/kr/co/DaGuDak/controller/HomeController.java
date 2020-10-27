@@ -63,6 +63,7 @@ public class HomeController {
 
 		return "forum";
 	}
+ 
 
 	@RequestMapping(value = "/customerService", method = RequestMethod.GET)
 	public String customerServic(Locale locale, Model model) {

@@ -1,3 +1,4 @@
+//id 중복확인 버튼 submit	
  
    //id 중복확인   ajax
       function fn_idChk(){
