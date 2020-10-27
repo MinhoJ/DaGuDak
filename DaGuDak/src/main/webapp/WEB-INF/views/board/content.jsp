@@ -13,7 +13,7 @@ alert("비밀번호가 일치하지 않습니다.");
 </script>
 </c:if>
 
-
+<script src="<c:url value="/resources/js/board/commentList.js" />"></script>
 <section class="ftco-section contact-section ftco-no-pb"
 	id="contact-section">
 	<div class="container">

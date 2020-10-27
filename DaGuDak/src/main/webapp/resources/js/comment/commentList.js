@@ -2,10 +2,10 @@
 function commentList(){
 	$.ajax({
 		type: "get",
-		url: "${pageContext.request.contextPath}/comment/",
-		success: function(result){
+		url: "${pageContext.request.contextPath}/comment/list?bid=" + $(sessionScope.bid).val() + "&bno=" + $(dto.bno).val(),
+		success: function(commentList){
 		//responseText가 result에 저장됨.
-			$("#commentList").jsp(result);
+			$("#commentList").html(commentList);
 		}
 	});
 }
