@@ -20,10 +20,10 @@
                    <div class="col-md-11">
                   <div class="form-group">
                   <label for="id">아이디</label> 
-                     <input type="text" name="member_id" id="member_id" class="form-control" readonly="readonly" value="${vo.member_id}" required   style="float: left;">
+                     <input type="text" name="member_id" id="member_id" class="form-control" readonly="readonly" value="${vo.member_id}" style="float: left;">
                   </div>
-               </div> 
-                     
+               </div>
+               
                <div class="col-md-11">
                   <div class="form-group">
                   <label for="name">이름</label> 
