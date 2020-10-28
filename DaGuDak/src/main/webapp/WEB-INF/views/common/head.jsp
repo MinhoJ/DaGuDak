@@ -120,7 +120,7 @@
                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=3" class="nav-link">익명게시판</a></li>
                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=4" class="nav-link">고객센터</a></li>
             </ul>
-            <div style="margin-right: 10px;"><a href="${pageContext.request.contextPath}/racing" class="btn btn-primary">경기 바로가기</a></div>
+            <div style="margin-right: 10px;"><a href="${pageContext.request.contextPath}/race/racing" class="btn btn-primary">경기 바로가기</a></div>
          </div>
       </div>
    </nav>

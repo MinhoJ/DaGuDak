@@ -131,14 +131,6 @@
 			</tr>
 		</table>
 	</div>
-<%-- <div align="center">
-
-	<img
-		src="${pageContext.request.contextPath}/resources/images/horseracing.jpg"
-		width="800px;"> <img
-		src="${pageContext.request.contextPath}/resources/images/livechat.png"
-		height="362px;">
-</div> --%>
 
 <fieldset>
 		<div id="messageWindow"

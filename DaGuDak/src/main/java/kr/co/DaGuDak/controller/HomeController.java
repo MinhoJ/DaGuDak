@@ -32,60 +32,14 @@ public class HomeController {
 
 		return "home";
 	}
-
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Locale locale, Model model) {
-
-		return "board/list";
-	}
-
-	@RequestMapping(value = "/horses", method = RequestMethod.GET)
-	public String horses(Locale locale, Model model) {
-		return "horses";
-	}
-
-	@RequestMapping(value = "/horseInfo", method = RequestMethod.GET)
-	public String horseInfo(Locale locale, Model model) {
-		return "horseInfo";
-	}
-
-	@RequestMapping(value = "/customerService", method = RequestMethod.GET)
-	public String customerServic(Locale locale, Model model) {
-		return "customerService";
-	}
-
-	@RequestMapping(value = "/racing", method = RequestMethod.GET)
-	public String racing(Locale locale, Model model) {
-
-		return "racing";
-	}
-
-	@RequestMapping(value = "/betting", method = RequestMethod.GET)
-	public String betting(Locale locale, Model model) {
-
-		return "betting";
-	}
-
-	@RequestMapping(value = "/racingList", method = RequestMethod.GET)
-	public String racingList(Locale locale, Model model) {
-		return "racingList";
-	}
-
-	@RequestMapping(value = "/bettingHistory", method = RequestMethod.GET)
-	public String bettingHistory(Locale locale, Model model) {
-
-		return "bettingHistory";
-	}
-
-	@RequestMapping(value = "/csChat", method = RequestMethod.GET)
-	public String csChat(Locale locale, Model model) {
-
+	
+	@RequestMapping("/chChat")
+	public String csChat() {
 		return "csChat";
 	}
 
-	@RequestMapping(value = "/racingResult", method = RequestMethod.GET)
-	public String racingResult(Locale locale, Model model) {
-		return "racingResult";
-	}
+
+
+	
 
 }
