@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file = "/WEB-INF/views/common/head.jsp" %>
 
 <section class="ftco-section contact-section ftco-no-pb"
@@ -103,7 +103,7 @@
 
 
 <!-- 게임 배경 -->
-<script type="text/javascript" src="<c:url value="/resources/js/racing/animationParallxingBackground.js?version=68" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/racing/animationParallxingBackground.js?version=69" />"></script>
 <div id="gameBackground" style="position:relative;">
    
    <canvas id="GameCanvas" width="1100" height="650" style="border: 1px solid #000;">
@@ -195,6 +195,6 @@
 
 
 
- <%-- <script src="<c:url value="/resources/js/chat/chat.js" />"></script> --%>
+ <script src="<c:url value="/resources/js/chat/chat.js" />"></script> 
  <script src="<c:url value="/resources/js/racing/race.js?version=5" />"></script>
  <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
