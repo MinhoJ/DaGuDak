@@ -49,18 +49,6 @@ public class HomeController {
 		return "horseInfo";
 	}
 
-	@RequestMapping(value = "/news", method = RequestMethod.GET)
-	public String news(Locale locale, Model model) {
-
-		return "news";
-	}
-
-	@RequestMapping(value = "/forum", method = RequestMethod.GET)
-	public String forum(Locale locale, Model model) {
-
-		return "forum";
-	}
-
 	@RequestMapping(value = "/customerService", method = RequestMethod.GET)
 	public String customerServic(Locale locale, Model model) {
 		return "customerService";

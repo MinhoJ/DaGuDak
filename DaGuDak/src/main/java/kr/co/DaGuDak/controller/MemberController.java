@@ -20,7 +20,7 @@ import kr.co.DaGuDak.model.MemberVO;
 import kr.co.DaGuDak.service.MemberService;
 
 @Controller
-@RequestMapping("/views/member/*")
+@RequestMapping("/member/*")
 public class MemberController {
 
    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -30,10 +30,9 @@ public class MemberController {
 
    // 회원가입 get
    @RequestMapping(value = "register", method = RequestMethod.GET)
-   public void getRegister() throws Exception {
-       
+   public String getRegister() throws Exception {
+      return "member/register";
    }
-
    // 회원가입 post
    @RequestMapping(value = "register", method = RequestMethod.POST)
    public String postRegister(@ModelAttribute MemberVO vo, Model model) throws Exception {

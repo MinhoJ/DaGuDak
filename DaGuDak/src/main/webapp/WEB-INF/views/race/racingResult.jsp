@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@ include file = "/WEB-INF/views/common/head.jsp" %>
+   
 <section class="ftco-section contact-section ftco-no-pb"
    id="contact-section">
    <div class="container">
@@ -102,3 +104,4 @@
 <div>ㅡㅡ출주마 정보(horseInfo.jsp)</div>
 <div>ㅡㅡ베팅(betting.jsp)</div>
 <div>ㅡ곧 시작할 경기 or 진행중인 경기에 강조 표시, 클릭 시 경기 페이지</div>
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>

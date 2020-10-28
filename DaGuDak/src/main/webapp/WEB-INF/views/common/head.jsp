@@ -114,8 +114,8 @@
             <!-- 페이지에 따라서  active 달라져야 함. js로.-->
                <li class="nav-item active"><a href="${pageContext.request.contextPath}" class="nav-link">Home</a></li>
                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=1" class="nav-link">공지사항</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/racingList" class="nav-link">오늘의 경기</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/horses" class="nav-link">경주마 정보</a></li>
+               <li class="nav-item"><a href="${pageContext.request.contextPath}/race/racingList" class="nav-link">오늘의 경기</a></li>
+               <li class="nav-item"><a href="${pageContext.request.contextPath}/horse/horses" class="nav-link">경주마 정보</a></li>
                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=2" class="nav-link">경마 뉴스</a></li>
                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=3" class="nav-link">익명게시판</a></li>
                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=4" class="nav-link">고객센터</a></li>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file = "/WEB-INF/views/common/head.jsp" %>
+
 
    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
       <div class="container">
@@ -43,4 +45,7 @@
             
          </div>
       </div>
+      
    </section>
+   
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>

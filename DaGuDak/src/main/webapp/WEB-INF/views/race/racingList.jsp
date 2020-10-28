@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file = "/WEB-INF/views/common/head.jsp" %>
+	
 <section class="ftco-section contact-section ftco-no-pb"
 	id="contact-section">
 	<div class="container">
@@ -20,21 +22,21 @@
 			<!-- 경기 중일 때는 /racing, 대기 중일 때는 /betting, 경기 종료는 /racingResult -->
 			<div class="col-lg-4 ftco-animate">
 				<div class="blog-entry">
-					<a href="/DaGuDak/racing" class="block-20"
+					<a href="/DaGuDak/race/racing" class="block-20"
 						style="background-image: url('${pageContext.request.contextPath}/resources/images/list_ing.jpg');">
 					</a>
 					<div class="text d-block">
 						<div class="meta">
 							<p>
-								<a href="/DaGuDak/racing"><span class="fa fa-calendar mr-2"></span>2020년
+								<a href="/DaGuDak/race/racing"><span class="fa fa-calendar mr-2"></span>2020년
 									10월 20일</a>
 							</p>
 						</div>
 						<h3 class="heading">
-							<a href="/DaGuDak/racing">4번째 경기</a>
+							<a href="/DaGuDak/race/racing">4번째 경기</a>
 						</h3>
 						<p>
-							<a href="/DaGuDak/racing" class="btn btn-secondary py-2 px-3">경기
+							<a href="/DaGuDak/race/racing" class="btn btn-secondary py-2 px-3">경기
 								보기</a>
 						</p>
 					</div>
@@ -171,3 +173,4 @@
 <div>ㅡㅡ출주마 정보(horseInfo.jsp)</div>
 <div>ㅡㅡ베팅(betting.jsp)</div>
 <div>ㅡ곧 시작할 경기 or 진행중인 경기에 강조 표시, 클릭 시 경기 페이지</div>
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
