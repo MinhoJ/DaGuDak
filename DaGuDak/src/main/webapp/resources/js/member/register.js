@@ -125,10 +125,7 @@ function checkBirth() {
 			document.getElementById('checkBirth').innerHTML = "성인이 아닙니다.";
 			$("#submit").attr("disabled", "disabled");
 		}
-<<<<<<< HEAD
-	}
-}
-=======
+
 	
 	 function chkPW(){
 
@@ -172,10 +169,8 @@ function checkBirth() {
 		  
 		 }
 	 
-	 
 
-	 
-	 //생년월일 확인
+	 // 생년월일 확인
 	 function checkBirth(){
 		 var birth = $('#birth').val();
 		 
@@ -215,5 +210,4 @@ function checkBirth() {
 			 }
 		 }
 	 }
-	
->>>>>>> refs/remotes/origin/nakyung
+	}}
