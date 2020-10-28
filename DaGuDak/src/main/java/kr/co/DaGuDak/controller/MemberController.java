@@ -20,7 +20,7 @@ import kr.co.DaGuDak.model.MemberVO;
 import kr.co.DaGuDak.service.MemberService;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/views/member/*")
 public class MemberController {
 
    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);

@@ -10,11 +10,11 @@ import lombok.ToString;
 @Getter
 @ToString
 public class CommentVO {
-	private int rno;
+	private int cmtno;
+	private int bid;
 	private int bno;
-	private String commenttext;
-	private String commenter;
-	private String userName;
-	private Date regdate;
-	private Date updatedate;
+	private String cmt_writer;
+	private String cmt_password;
+	private String cmt_content;
+	private Date cmt_regdate;
 }

@@ -35,7 +35,7 @@
 	<script src="<c:url value="/resources/js/board/list.js" />"></script>
 	<script src="<c:url value="/resources/js/board/write.js" />"></script>
 	<script src="<c:url value="/resources/js/board/update.js" />"></script>
-	<script src="<c:url value="/resources/js/board/delete.js" />"></script>
+	<script src="<c:url value="/resources/js/board/content.js" />"></script>
 
 
 </head>
