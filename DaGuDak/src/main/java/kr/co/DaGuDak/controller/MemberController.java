@@ -68,36 +68,27 @@ public class MemberController {
       return "member/login";
    }
 
-   // 로그인 여부
-   
-   @RequestMapping(value = "loginCheck", method = RequestMethod.POST)
-   public ModelAndView loginCheck(@ModelAttribute MemberVO vo, @CookieValue(value="cookie", required=true, defaultValue="0") String value, 
-                           HttpSession session, Model model, HttpServletResponse response) throws Exception {
-      ModelAndView mv = new ModelAndView();
+// 로그인 여부
 
-      boolean result = false;
-      if (service.idChk(vo.getMember_id()) == 1) {
-         result = service.loginCheck(vo, session);
-         if (result == true) {
-            model.addAttribute("loginResult", "성공");
-             
-            Cookie cookie = new Cookie("member_id", vo.getMember_id()); 
-            cookie.setMaxAge(60*60*24*7);  
-            cookie.setPath("/");  //모든경로에서 접근 가능.
-            response.addCookie(cookie);
-                        
-            model.addAttribute(cookie);
-            mv.setViewName("home");
- 
-             
-         } else {
-            model.addAttribute("loginResult", "비밀번호 문제");
-            mv.setViewName("home"); 
-         }
-      } else {
-         model.addAttribute("loginResult", "아이디 문제");
-         mv.setViewName("home");
-      }
+	@RequestMapping(value = "loginCheck", method = RequestMethod.POST)
+	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, HttpSession session, Model model,
+			HttpServletResponse response) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		boolean result = false;
+		if (service.idChk(vo.getMember_id()) == 1) {
+			result = service.loginCheck(vo, session);
+			if (result == true) {
+				model.addAttribute("loginResult", "성공");
+				mv.setViewName("home");
+			} else {
+				model.addAttribute("loginResult", "비밀번호 문제");
+				mv.setViewName("home");
+			}
+		} else {
+			model.addAttribute("loginResult", "아이디 문제");
+			mv.setViewName("home");
+		}
 
       return mv;
    }
@@ -146,42 +137,41 @@ public class MemberController {
       String loginId = (String) session.getAttribute("userId");
       vo = service.userInfo(loginId);
       model.addAttribute("vo", vo);
-
-      System.out.println(vo + "--------------deleteMemberGet");
       return "member/deleteMember";
    }
 
    // 회원탈퇴
 
-   @RequestMapping(value = "deleteMember", method = RequestMethod.POST)
-   public ModelAndView deleteMemberPost(@ModelAttribute MemberVO vo, Model model, HttpSession session)
-         throws Exception {
-      ModelAndView mv = new ModelAndView();
-      String loginId = (String) session.getAttribute("userId");
+	@RequestMapping(value = "deleteMember", method = RequestMethod.POST)
+	public ModelAndView deleteMemberPost(@ModelAttribute MemberVO vo, Model model, HttpSession session)
+			throws Exception {
+		ModelAndView mv = new ModelAndView();
+		String loginId = (String) session.getAttribute("userId");
+		System.out.println(loginId + "=================");
 
-      // 비밀번호 체크하기
-      boolean passwordChk = service.passwordChk(loginId, vo);
+		// 비밀번호 체크하기
+		boolean passwordChk = service.passwordChk(loginId, vo);
 
-      if (passwordChk && vo.getPassword() != null) { // 탈퇴 성공
-         service.deleteMember(loginId);
-          model.addAttribute("deleteMessage", "성공");    //얘가 안떠요..ㅠㅠ
-         session.invalidate(); // 세션 삭제 
-         mv.setViewName("home");
+		if (passwordChk && vo.getPassword() != null) { // 탈퇴 성공
+			service.deleteMember(loginId);
+			model.addAttribute("deleteMessage", "성공");
+			session.invalidate(); // 세션 삭제
+			mv.setViewName("home");
 
-      } else if (passwordChk == false && vo.getPassword() != null)  { // 탈퇴 실패
-         vo = service.userInfo(loginId);
-         model.addAttribute("vo", vo);
-         model.addAttribute("deleteMessage", "실패");  //얘는 뜬다?
-         mv.setViewName("member/deleteMember");
-         
-      } else {
-         model.addAttribute("vo", vo);
-         mv.setViewName("member/deleteMember");
-      }
+		} else if (passwordChk == false && vo.getPassword() != null) { // 탈퇴 실패
+			vo = service.userInfo(loginId);
+			model.addAttribute("vo", vo);
+			model.addAttribute("deleteMessage", "실패");
+			mv.setViewName("member/deleteMember");
 
-      return mv;
+		} else {
+			model.addAttribute("vo", vo);
+			mv.setViewName("member/deleteMember");
+		}
 
-   }
+		return mv;
+
+	}
 
    // 포인트 충전
    @RequestMapping(value = "pointBank", method = RequestMethod.GET)
