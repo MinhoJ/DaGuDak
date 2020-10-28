@@ -11,7 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint("/racing")
+@ServerEndpoint("/views/racing")
 public class WebSocketController {
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
@@ -46,15 +46,11 @@ public class WebSocketController {
 
 	@OnOpen
 	public void onOpen(Session session) {
-		System.out.println("aasdf");
-		// Add session to the connected sessions set
 		clients.add(session);
 	}
 
 	@OnClose
 	public void onClose(Session session) {
-		System.out.println("aaaa");
-		// Remove session from the connected sessions set
 		clients.remove(session);
 	}
 }

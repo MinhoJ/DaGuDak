@@ -20,10 +20,10 @@
                    <div class="col-md-11">
                   <div class="form-group">
                   <label for="id">아이디</label> 
-                     <input type="text" name="member_id" id="member_id" class="form-control" readonly="readonly" value="${vo.member_id}" required   style="float: left;">
+                     <input type="text" name="member_id" id="member_id" class="form-control" readonly="readonly" value="${vo.member_id}" style="float: left;">
                   </div>
-               </div> 
-                     
+               </div>
+               
                <div class="col-md-11">
                   <div class="form-group">
                   <label for="name">이름</label> 
@@ -33,6 +33,24 @@
                </div>
                 
                      
+                <div class="col-md-11">
+                  <div class="form-group">
+                  <label for=password>비밀번호</label> 
+                     <input type="password" name="password" id="password"
+                        class="form-control" placeholder="비밀번호"  onkeyup="chkPW()" required>
+                       <div id="chkPW"></div>
+                  </div>
+               </div>
+               
+               <div class="col-md-11">
+                  <div class="form-group">
+                  <label for=checkPassword>비밀번호 확인</label> 
+                     <input type="password" name="checkPassword" id="checkPassword"
+                        class="form-control" onkeyup="duplicatePW()" placeholder="비밀번호 확인" required>
+                     <div id="passwordChecked"></div>
+                  </div>
+               </div>
+               
                <div class="col-md-11">
                   <div class="form-group">
                   <label for=password>비밀번호</label> 
@@ -64,20 +82,15 @@
                 </div>
                     
                    
-                   
                     <div style="margin-left: auto;  margin-right: auto; margin-top: 20px; margin-bottom : 20px;">
                         <div class="form-group">
                            <input type="submit" value="완료" class="btn btn-primary py-3 px-5">
                             
                         </div>
                      </div>
-       
-
                   </div>
-               </form>
-               
+               </form>   
             </div>
-
             
          </div>
       </div>

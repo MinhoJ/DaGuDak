@@ -49,7 +49,7 @@
 
 
 	<update id="updateMember">
-		UPDATE member
+		UPDATE member 
 		SET password = #{password},
 			email = #{email},
 			phone = #{phone}

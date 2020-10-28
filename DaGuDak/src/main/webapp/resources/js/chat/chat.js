@@ -1,5 +1,5 @@
 var textarea = document.getElementById("messageWindow");
-var webSocket = new WebSocket('ws://192.168.0.150:8089/DaGuDak/racing');
+var webSocket = new WebSocket('ws://192.168.0.104:8089/DaGuDak/racing');
 var inputMessage = document.getElementById('inputMessage');
     
     webSocket.onerror = function(event) {     onError(event)   };
