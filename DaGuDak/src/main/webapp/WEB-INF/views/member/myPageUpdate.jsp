@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
+    <%@ include file = "/WEB-INF/views/common/head.jsp" %>
 <section class="ftco-section bg-light">
 
       <div class="container">
@@ -82,3 +83,4 @@
       </div>
    </section>
    <script src="<c:url value="/resources/js/member/register.js" />"></script>
+          <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
