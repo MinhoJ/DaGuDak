@@ -101,8 +101,6 @@
                            <input type="submit" id="submit" onclick="login()" class="btn btn-primary py-3 px-4" value="로그인">
                         </div>
                      </div>
-                     
-                     
                 
                   </form>
 

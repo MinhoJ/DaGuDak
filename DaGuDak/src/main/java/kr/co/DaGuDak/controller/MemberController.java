@@ -31,7 +31,7 @@ public class MemberController {
 	// 회원가입 get
 	@RequestMapping(value = "register", method = RequestMethod.GET)
 	public void getRegister() throws Exception {
-		 
+
 	}
 
 	// 회원가입 post
@@ -69,10 +69,10 @@ public class MemberController {
 	}
 
 	// 로그인 여부
-	
+
 	@RequestMapping(value = "loginCheck", method = RequestMethod.POST)
-	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, @CookieValue(value="cookie", required=true, defaultValue="0") String value, 
-									HttpSession session, Model model, HttpServletResponse response) throws Exception {
+	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, HttpSession session, Model model,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		boolean result = false;
@@ -80,21 +80,10 @@ public class MemberController {
 			result = service.loginCheck(vo, session);
 			if (result == true) {
 				model.addAttribute("loginResult", "성공");
-				 
-				Cookie cookie = new Cookie("member_id", vo.getMember_id()); 
-				cookie.setMaxAge(60*60*24*7);  
-				cookie.setPath("/");  //모든경로에서 접근 가능.
-				response.addCookie(cookie);
-				
-				System.out.println(cookie +"쿠키 확인!!");
-				
-				model.addAttribute(cookie);
 				mv.setViewName("home");
- 
-				 
 			} else {
 				model.addAttribute("loginResult", "비밀번호 문제");
-				mv.setViewName("home"); 
+				mv.setViewName("home");
 			}
 		} else {
 			model.addAttribute("loginResult", "아이디 문제");
@@ -148,8 +137,8 @@ public class MemberController {
 		String loginId = (String) session.getAttribute("userId");
 		vo = service.userInfo(loginId);
 		model.addAttribute("vo", vo);
-
-		System.out.println(vo + "--------------deleteMemberGet");
+		model.addAttribute("member_id", vo.getMember_id());
+		System.out.println(vo.getMember_id() + "=================");
 		return "member/deleteMember";
 	}
 
@@ -160,22 +149,23 @@ public class MemberController {
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String loginId = (String) session.getAttribute("userId");
+		System.out.println(loginId + "=================");
 
 		// 비밀번호 체크하기
 		boolean passwordChk = service.passwordChk(loginId, vo);
 
 		if (passwordChk && vo.getPassword() != null) { // 탈퇴 성공
 			service.deleteMember(loginId);
-			 model.addAttribute("deleteMessage", "성공");    //얘가 안떠요..ㅠㅠ
-			session.invalidate(); // 세션 삭제 
+			model.addAttribute("deleteMessage", "성공");
+			session.invalidate(); // 세션 삭제
 			mv.setViewName("home");
 
-		} else if (passwordChk == false && vo.getPassword() != null)  { // 탈퇴 실패
+		} else if (passwordChk == false && vo.getPassword() != null) { // 탈퇴 실패
 			vo = service.userInfo(loginId);
 			model.addAttribute("vo", vo);
-			model.addAttribute("deleteMessage", "실패");  //얘는 뜬다?
+			model.addAttribute("deleteMessage", "실패");
 			mv.setViewName("member/deleteMember");
-			
+
 		} else {
 			model.addAttribute("vo", vo);
 			mv.setViewName("member/deleteMember");
@@ -211,7 +201,7 @@ public class MemberController {
 			mv.setViewName("home");
 		} else {
 
-			vo = service.userInfo(loginId);  
+			vo = service.userInfo(loginId);
 			model.addAttribute("vo", vo);
 			model.addAttribute("chargePoint", "실패");
 			mv.setViewName("member/pointBank");
