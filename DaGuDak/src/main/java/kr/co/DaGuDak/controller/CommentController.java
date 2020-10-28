@@ -42,12 +42,28 @@ public class CommentController {
 	}
 	
 	@RequestMapping("list")
-	public ModelAndView list(@RequestParam("bid") int bid, @RequestParam("bno") int bno, ModelAndView mav) throws Exception {
+	public ModelAndView list(@RequestParam("bid") int bid, @RequestParam("bno") int bno) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		List<CommentVO> list = commentService.list(bid, bno);
-		mav.setViewName("board/commentList");
+		mav.setViewName("comment/commentList");
 		mav.addObject("cmtList", list);
 		System.out.println("comment.list() 실행");
-		System.out.println(list.get(0));
+		System.out.println(list.size());
+		if(list.size() != 0)
+			System.out.println(list.get(0));
+		return mav;
+	}
+	
+	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
+	public ModelAndView updateForm(@RequestParam("cmtno") int cmtno) throws Exception {
+		System.out.println("commentUpdateForm 조회: "+ cmtno);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("comment/commentUpdate");
+		CommentVO vo = commentService.read(cmtno);
+		if(vo != null)
+			mav.addObject("cmt", vo);
+		else
+			mav.setViewName("comment/commentList");
 		return mav;
 	}
 	

@@ -12,6 +12,12 @@
 		ORDER BY
 		cmtno desc,	cmt_regdate desc
 	</select>
+	
+	<select id="selectComment" resultType="CommentVO">
+		SELECT *
+		FROM comments
+		WHERE cmtno = #{cmtno}
+	</select>
 
 	<insert id="insertComment">
 		INSERT INTO
@@ -23,7 +29,7 @@
 
 	<update id="updateComment">
 		UPDATE comments
-		SET cmt_content = #{cmt_content},
+		SET cmt_content = #{cmt_content}, cmt_writer = #{cmt_writer}
 		WHERE cmtno = #{cmtno}
 		AND bid = #{bid}
 		AND bno = #{bno}

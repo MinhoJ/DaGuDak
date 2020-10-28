@@ -33,16 +33,15 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+<!-- 
 	<jsp-config>
 		<jsp-property-group>
-			<url-pattern>/WEB-INF/views/*</url-pattern>
+			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/common/head.jsp</include-prelude>
 			<include-coda>/WEB-INF/views/common/footer.jsp</include-coda>
 		</jsp-property-group>
 	</jsp-config>
-
-
+ -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter

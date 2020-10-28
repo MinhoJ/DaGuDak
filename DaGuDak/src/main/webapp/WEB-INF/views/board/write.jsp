@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ include file = "/WEB-INF/views/common/head.jsp" %>
 <c:if test="${ (sessionScope.bid == '1' || sessionScope.bid == '4') && sessionScope.userId != 'admin'}">
 <script>
 alert("관리자 페이지에 접근할 수 없습니다.");
@@ -102,7 +102,7 @@ history.back();
 						<button type="reset" class="btn btn-primary py-3"
 							style="padding-left: 32px; padding-right: 32px;">다시 작성</button>
 						<button type="button"
-							onclick="javascript:listBtn('${bid }', '${map.boardPager.curPage }', '${map.searchOption }', '${map.keyword }')"
+							onclick="javascript:listBtn('${sessionScope.bid }', '${map.boardPager.curPage }', '${map.searchOption }', '${map.keyword }')"
 							class="btn btn-primary py-3 px-5">목록</button>
 					</div>
 				</div>
@@ -110,3 +110,4 @@ history.back();
 		</div>
 	</div>
 </section>
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>

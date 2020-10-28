@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file = "/WEB-INF/views/common/head.jsp" %>
 <c:if
 	test="${sessionScope.bid == '' || sessionScope.bid == null || sessionScope.bid == '0'} ">
 	<script>
@@ -7,32 +8,33 @@ location.href="home"
 </script>
 </c:if>
 
-<c:if test="${deletePasswordCheck==false || updatePasswordCheck==false || cmtUpdatePasswordCheck == false || cmtDeletePasswordCheck == false}">
-	<script>
+<c:if test="${deletePasswordCheck=='false' || cmtUpdatePasswordCheck == 'false' || cmtDeletePasswordCheck == 'false'}">
+<script>
 alert("비밀번호가 일치하지 않습니다.");
 </script>
 </c:if>
 
 <script src="<c:url value="/resources/js/comment/commentList.js" />"></script>
+<script src="<c:url value="/resources/js/comment/commentUpdate.js" />"></script>
 
 <section class="ftco-section contact-section ftco-no-pb"
 	id="contact-section">
 	<div class="container">
 		<div class="row justify-content-center pb-3">
 			<div class="col-md-7 heading-section text-center ftco-animate">
-				<c:if test="${bid == '1'}">
+				<c:if test="${sessionScope.bid == '1'}">
 					<span class="subheading">NOTICE</span>
 					<h2 class="mb-4">공 지 사 항</h2>
 				</c:if>
-				<c:if test="${bid == '2'}">
+				<c:if test="${sessionScope.bid == '2'}">
 					<span class="subheading">NEWS</span>
 					<h2 class="mb-4">경 마 뉴 스</h2>
 				</c:if>
-				<c:if test="${bid == '3'}">
+				<c:if test="${sessionScope.bid == '3'}">
 					<span class="subheading">ANONYMOUS BOARD</span>
 					<h2 class="mb-4">익 명 게 시 판</h2>
 				</c:if>
-				<c:if test="${bid == '4'}">
+				<c:if test="${sessionScope.bid == '4'}">
 					<span class="subheading">CUSTOMER SERVICE</span>
 					<h2 class="mb-4">고 객 센 터</h2>
 				</c:if>
@@ -92,10 +94,11 @@ alert("비밀번호가 일치하지 않습니다.");
 		</div>
 
 		<!-- 댓글 -->
-		<c:if test="${bid == '3'}">
+		<c:if test="${sessionScope.bid == '3'}">
 				<!-- 댓글 내용 -->
 				<div id="commentList"></div>
-				<script> commentList(${sessionScope.bid}, ${dto.bno})  </script>
+				<script> commentList(${sessionScope.bid}, ${dto.bno})</script>
+				
 				<!-- 댓글 입력창 -->
 				<div class="mx-5 mt-4" align="center">
 					<ul class="comment-list">
@@ -135,7 +138,7 @@ alert("비밀번호가 일치하지 않습니다.");
 					<a href="#" class="btn btn-primary py-3 px-5 mb-5 mt-5"
 						data-toggle="modal" data-target="#anonymousContentDelete">삭제</a>
 					<button type="button"
-						onclick="javascript:listBtn('${bid }', '${map.boardPager.curPage }', '${map.searchOption }', '${map.keyword }')"
+						onclick="javascript:listBtn('${sessionScope.bid }', '${map.boardPager.curPage }', '${map.searchOption }', '${map.keyword }')"
 						class="btn btn-primary py-3 px-5">목록</button>
 				</div>
 			</c:when>
@@ -147,7 +150,7 @@ alert("비밀번호가 일치하지 않습니다.");
 					<a href="#" class="btn btn-primary py-3 px-5 mb-5 mt-5"
 						data-toggle="modal" data-target="#anonymousContentDelete">삭제</a>
 					<button type="button"
-						onclick="javascript:listBtn('${bid }', '${map.boardPager.curPage }', '${map.searchOption }', '${map.keyword }')"
+						onclick="javascript:listBtn('${sessionScope.bid }', '${map.boardPager.curPage }', '${map.searchOption }', '${map.keyword }')"
 						class="btn btn-primary py-3 px-5">목록</button>
 				</div>
 			</c:when>
@@ -213,59 +216,6 @@ alert("비밀번호가 일치하지 않습니다.");
 	</div>
 </div>
 
-<!-- 댓글 수정 모달창 -->
-<div class="modal fade" id="commentUpdate" tabindex="-1"
-	role="dialog" aria-labelledby="commentUpdateTitle"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<!-- 모달창 -->
-		<div class="modal-content">
-			<!-- 닫기 버튼 -->
-			<div class="modal-header">
-				<button type="button"
-					class="close d-flex align-items-center justify-content-center"
-					data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true" class="fa fa-close"></span>
-				</button>
-			</div>
-
-			<div class="modal-body p-4 p-md-5">
-				<!-- form -->
-				<form name="commentUpdate" action="${pageContext.request.contextPath}/comment/update" method="post"
-					class="appointment-form ftco-animate">
-					<h3>
-						<span style="align-content: center;">댓글 수정</span>
-					</h3>
-
-					<div class="">
-						<div class="form-group">
-								<input type="text" name="cmt_content" class="form-control"
-									placeholder="내용을 입력하세요" size="100" required>
-						</div>
-						<div class="form-group">
-								<input type="password" name="cmt_password" class="form-control"
-									placeholder="비밀번호를 입력하세요" required>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="댓글 수정"
-								class="btn btn-primary py-3 px-4">
-						</div>
-					</div>
-					<input type="hidden" name="bid" value="${sessionScope.bid }">
-					<input type="hidden" name="bno" value="${dto.bno }">
-					<!--  cmtno 어떻게 얻지? -->
-					<input type="hidden" name="bno" value="${cmtno }">
-				</form>
-				<c:if test="${bid == '3'}">
-					<div align="center" class="ftco-animate" style="font-size: small;">
-						<p>댓글 작성 시 입력한 비밀번호와 일치해야 합니다.</p>
-					</div>
-				</c:if>
-			</div>
-		</div>
-	</div>
-</div>
-
 <!-- 댓글 삭제 모달창 -->
 <div class="modal fade" id="commentDelete" tabindex="-1"
 	role="dialog" aria-labelledby="commentDeleteTitle"
@@ -316,3 +266,4 @@ alert("비밀번호가 일치하지 않습니다.");
 		</div>
 	</div>
 </div>
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>

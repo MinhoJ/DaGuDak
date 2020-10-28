@@ -149,8 +149,8 @@ public class BoardController {
 		map.put("keyword", keyword);
 		map.put("curPage", curPage);
 		mav.addObject("map", map);
-
 		mav.setViewName("board/update");
+		
 		mav.addObject("dto", boardService.read(bid, bno));
 		return mav;
 	}
@@ -172,7 +172,7 @@ public class BoardController {
 			rv.setExposeModelAttributes(false);
 			return new ModelAndView(rv);
 		} else {
-			url = "content?bno=" + vo.getBno();
+			url = "updateForm?bno=" + vo.getBno();
 			rv.setUrl(url);
 			rv.setExposeModelAttributes(false);
 			return new ModelAndView(rv);

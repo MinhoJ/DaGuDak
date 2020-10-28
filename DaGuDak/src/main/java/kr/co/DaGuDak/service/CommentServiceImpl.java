@@ -39,6 +39,11 @@ public class CommentServiceImpl implements CommentService {
 		
 		commentDao.create(vo);
 	}
+	
+	@Override
+	public CommentVO read(int cmtno) throws Exception {
+		return commentDao.read(cmtno);
+	}
 
 	@Override
 	public boolean update(CommentVO vo) throws Exception {
@@ -64,5 +69,4 @@ public class CommentServiceImpl implements CommentService {
 	public boolean delete(int cmtno, String cmt_password) throws Exception {
 		return commentDao.delete(cmtno, cmt_password);
 	}
-
 }

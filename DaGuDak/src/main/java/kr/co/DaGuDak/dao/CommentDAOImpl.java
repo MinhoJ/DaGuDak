@@ -29,6 +29,11 @@ public class CommentDAOImpl implements CommentDAO {
 	public void create(CommentVO vo) throws Exception {
 		sqlSession.insert("comment.insertComment", vo);
 	}
+	
+	@Override
+	public CommentVO read(int cmtno) throws Exception {
+		return sqlSession.selectOne("comment.selectComment", cmtno);
+	}
 
 	@Override
 	public boolean update(CommentVO vo) throws Exception {
@@ -44,4 +49,6 @@ public class CommentDAOImpl implements CommentDAO {
 		int result = sqlSession.insert("comment.deleteComment", map);
 		return result == 1 ? true : false;
 	}
+
+	
 }
