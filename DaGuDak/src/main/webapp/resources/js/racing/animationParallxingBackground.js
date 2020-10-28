@@ -53,7 +53,7 @@ function init(){
  
 
  //Define Asset Image File Array
- assetfiles = ['resources/images/racing/background/cloud2.png', 'resources/images/racing/background/crowd.png','resources/images/racing/background/track.png'];
+ assetfiles = ['resources/images/racing/background/bgImg.png', 'resources/images/racing/background/crowd2.png','resources/images/racing/background/track.png'];
  
  //Create Custom Literal Object(Define spritesRate Property) & Insert into Asset Image Array
  assets.push({spritesRate: 0.001});
@@ -93,8 +93,8 @@ backgroundImg1.onload = function(){
 }
 
 function scaleToFill(img){
-	canvas = document.getElementById("GameCanvas"); 
-	
+   canvas = document.getElementById("GameCanvas"); 
+   
     // get the scale
     var scale = Math.max(canvas.width / img.width, canvas.height / img.height);
     // get the top left position of the image
@@ -104,12 +104,7 @@ function scaleToFill(img){
 }
 
 
-
-
-
-
-
 function animationLoop(){
-	   background.startAnimation();
-	}
-	window.addEventListener("load", init, false);
+      background.startAnimation();
+   }
+   window.addEventListener("load", init, false);
