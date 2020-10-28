@@ -238,6 +238,14 @@
 			<version>1.2.2</version>
 		</dependency>
 		<!-- 파일 업로드, servlet-context.xml에 MultipartResolver도 추가하기 -->
+		
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		<!-- JSON -->
 
 		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
 		<dependency>
@@ -246,7 +254,6 @@
 			<version>1.1</version>
 			<scope>provided</scope>
 		</dependency>
-
 
 	</dependencies>
 	<build>

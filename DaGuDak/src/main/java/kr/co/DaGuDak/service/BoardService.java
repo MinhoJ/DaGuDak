@@ -15,9 +15,9 @@ public interface BoardService {
 
 	public BoardVO read(int bid, int bno) throws Exception;
 
-	public void update(BoardVO vo, HttpServletRequest request) throws Exception;
+	public boolean update(BoardVO vo, HttpServletRequest request) throws Exception;
 
-	public void delete(int bid, int bno) throws Exception;
+	public boolean delete(BoardVO vo) throws Exception;
 
 	public void increaseViewCnt(int bid, int bno, HttpSession session) throws Exception;
 
