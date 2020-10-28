@@ -36,7 +36,7 @@
                      <h3><span style="align-content: center;">로그인</span></h3>
                      <div class="">
                         <div class="form-group">
-                           <input type="text" name="member_id" id="member_id" class="form-control" placeholder="아이디" onkeyup="javascript:keyevent(this);">
+                           <input type="text" name="loginId" id="loginId" class="form-control" placeholder="아이디" onkeyup="javascript:keyevent(this);">
                         </div> 
                          <div class="form-group">
                            <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" onkeyup="javascript:keyevent(this);">

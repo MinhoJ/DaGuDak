@@ -137,7 +137,7 @@
 					</h3>
 					<div class="">
 						<div class="form-group">
-							<input type="text" name="member_id" id="member_id"
+							<input type="text" name="member_id" id="remember_id"
 								class="form-control" placeholder="아이디"
 								onkeyup="javascript:keyevent(this);">
 						</div>
