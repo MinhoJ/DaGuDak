@@ -14,7 +14,7 @@
 <script>
 
 var IMP = window.IMP; 
-IMP.init("imp32272774"); // 식별코드
+IMP.init("imp89273076"); // 식별코드
 
 function requestPay() {
    var point = document.charge.point.value *=1 ;
