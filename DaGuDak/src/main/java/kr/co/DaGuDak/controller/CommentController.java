@@ -40,7 +40,7 @@ public class CommentController {
 		rv.setExposeModelAttributes(false);
 		return new ModelAndView(rv);
 	}
-	
+
 	@RequestMapping("list")
 	public ModelAndView list(@RequestParam("bid") int bid, @RequestParam("bno") int bno) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -49,80 +49,76 @@ public class CommentController {
 		mav.addObject("cmtList", list);
 		System.out.println("comment.list() 실행");
 		System.out.println(list.size());
-		if(list.size() != 0)
+		if (list.size() != 0)
 			System.out.println(list.get(0));
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "updateForm", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam("cmtno") int cmtno) throws Exception {
-		System.out.println("commentUpdateForm 조회: "+ cmtno);
+		System.out.println("commentUpdateForm 조회: " + cmtno);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("comment/commentUpdate");
 		CommentVO vo = commentService.read(cmtno);
-		if(vo != null)
+		if (vo != null)
 			mav.addObject("cmt", vo);
 		else
 			mav.setViewName("comment/commentList");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute CommentVO vo, RedirectAttributes ra, HttpSession session)
 			throws Exception {
-		
-		//수정 버튼 눌렀을때 cmtno 넘어오게 하는 방법 생각해보기
-		
+
+		// 수정 버튼 눌렀을때 cmtno 넘어오게 하는 방법 생각해보기
+
 		System.out.println("CommentController.update() 실행");
 		String url = "";
 		RedirectView rv = new RedirectView();
 
 		System.out.println(vo);
-		
+
 		boolean cmtUpdatePasswordCheck = commentService.update(vo);
 		ra.addFlashAttribute("cmtUpdatePasswordCheck", cmtUpdatePasswordCheck);
-		
+
 		System.out.println("cmtUpdatePasswordCheck: " + cmtUpdatePasswordCheck);
-		
+
 		url = "/DaGuDak/board/content?bno=" + vo.getBno();
 		rv.setUrl(url);
 		rv.setExposeModelAttributes(false);
-		
+
 		return new ModelAndView(rv);
 
 	}
+	@RequestMapping(value = "deleteForm", method = RequestMethod.GET)
+	public ModelAndView deleteForm(@RequestParam("cmtno") int cmtno, @RequestParam("bno") int bno) throws Exception {
+		System.out.println("commentDeleteForm 조회: " + cmtno);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("comment/commentDelete");
+		mav.addObject("cmtno", cmtno);
+		mav.addObject("bno", bno);
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute int cmtno, @ModelAttribute String cmt_password, RedirectAttributes ra, HttpSession session)
-			throws Exception {
+	public ModelAndView delete(@ModelAttribute("cmtno") int cmtno, @ModelAttribute("cmt_password") String cmt_password,
+			@ModelAttribute("bno") int bno, RedirectAttributes ra, HttpSession session) throws Exception {
 		System.out.println("CommentController.delete() 실행");
 		String url = "";
 		RedirectView rv = new RedirectView();
 
-		//System.out.println(delete(cmtno) : );
-
 		boolean cmtDeletePasswordCheck = commentService.delete(cmtno, cmt_password);
-		
+
 		ra.addFlashAttribute("cmtDeletePasswordCheck", cmtDeletePasswordCheck);
-		
 		System.out.println("cmtDeletePasswordCheck: " + cmtDeletePasswordCheck);
-		
-		//ajax 사용시 어디로 리턴하는지 확인할 것
-		//url = "/DaGuDak/board/content?bno=" + vo.getBno();
+
+		url = "/DaGuDak/board/content?bno=" + bno;
 		rv.setUrl(url);
 		rv.setExposeModelAttributes(false);
-		
-		return new ModelAndView(rv);	}
-	
 
-	
-	/*
-	 * 
-	 * @RequestMapping("listJson")
-	 * 
-	 * @ResponseBody public List<CommentVO> listJson(@RequestParam int bno) {
-	 * List<CommentVO> list = commentService.list(bno); return list; }
-	 */
-	 
+		return new ModelAndView(rv);
+	}
 
 }

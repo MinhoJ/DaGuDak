@@ -161,12 +161,12 @@ public class BoardController {
 		RedirectView rv = new RedirectView();
 		System.out.println(vo);
 		
-		boolean udpatePasswordCheck = boardService.update(vo, request);
-		ra.addFlashAttribute("udpatePasswordCheck", udpatePasswordCheck);
-		System.out.println("BoardController.update() passwordCheck: " + udpatePasswordCheck);
+		boolean updatePasswordCheck = boardService.update(vo, request);
+		ra.addFlashAttribute("updatePasswordCheck", updatePasswordCheck);
+		System.out.println("BoardController.update() udpatePasswordCheck: " + updatePasswordCheck);
 
 		
-		if (udpatePasswordCheck) {
+		if (updatePasswordCheck) {
 			url = "content?bno=" + vo.getBno();
 			rv.setUrl(url);
 			rv.setExposeModelAttributes(false);
@@ -186,8 +186,8 @@ public class BoardController {
 		System.out.println(vo);
 		
 		boolean deletePasswordCheck = boardService.delete(vo);
-		ra.addFlashAttribute("passwordCheck", deletePasswordCheck);
-		System.out.println("passwordCheck: " + deletePasswordCheck);
+		ra.addFlashAttribute("deletePasswordCheck", deletePasswordCheck);
+		System.out.println("deletePasswordCheck: " + deletePasswordCheck);
 
 		if (deletePasswordCheck) {
 			url = "list?bid=" + vo.getBid();

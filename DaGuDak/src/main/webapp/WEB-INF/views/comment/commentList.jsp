@@ -12,10 +12,13 @@
 					<p style="font-size: 16px;">
 						<font color="black">${cmt.cmt_content }</font>&nbsp;&nbsp;&nbsp;&nbsp;
 						<button onclick="javascript:commentUpdate(${cmt.cmtno}, ${status.count })" class="reply" style="border: none; margin-right: 2px; padding: 2px 10px;">수정</button>
-						<a href="?cmtno=${cmt.cmtno }" class="reply" data-toggle="modal" data-target="#commentDelete">삭제</a>
+						<button onclick="javascript:commentDelete(${cmt.cmtno}, ${cmt.bno }, ${status.count })" class="reply" style="border: none; padding: 2px 10px;">삭제</button>
 					</p>
 				</div>
 			</li>
 		</ul>
+		<% //댓글 수정 ajax %>
 		<div id="updateForm${status.count }"></div>
+		<% //댓글 삭제 ajax %>
+		<div id="deleteForm${status.count }"></div>
 </c:forEach>
