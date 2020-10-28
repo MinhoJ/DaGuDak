@@ -107,7 +107,7 @@ alert("비밀번호가 일치하지 않습니다.");
 					</div>
 				</div>
 
-				<c:if test="${sessionScope.userId == 'admin' }">
+				<c:if test="${sessionScope.userId == 'admin' && (sessionScope.bid == 1 || sessionScope.bid == 4) }">
 					<input type="hidden" name="writer" value="${dto.writer}">
 					<input type="hidden" name="password" value="${dto.password}">
 				</c:if>

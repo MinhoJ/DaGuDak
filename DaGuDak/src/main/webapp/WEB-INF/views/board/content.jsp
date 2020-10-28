@@ -14,8 +14,7 @@ alert("비밀번호가 일치하지 않습니다.");
 </script>
 </c:if>
 
-<script src="<c:url value="/resources/js/comment/commentList.js" />"></script>
-<script src="<c:url value="/resources/js/comment/commentUpdate.js" />"></script>
+<script src="<c:url value="/resources/js/board/comment.js" />"></script>
 
 <section class="ftco-section contact-section ftco-no-pb"
 	id="contact-section">
@@ -216,54 +215,4 @@ alert("비밀번호가 일치하지 않습니다.");
 	</div>
 </div>
 
-<!-- 댓글 삭제 모달창 -->
-<div class="modal fade" id="commentDelete" tabindex="-1"
-	role="dialog" aria-labelledby="commentDeleteTitle"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<!-- 모달창 -->
-		<div class="modal-content">
-			<!-- 닫기 버튼 -->
-			<div class="modal-header">
-				<button type="button"
-					class="close d-flex align-items-center justify-content-center"
-					data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true" class="fa fa-close"></span>
-				</button>
-			</div>
-
-			<div class="modal-body p-4 p-md-5">
-				<!-- form -->
-				<form name="commentDelete" action="${pageContext.request.contextPath}/comment/delete" method="post"
-					class="appointment-form ftco-animate">
-					<h3>
-						<span style="align-content: center;">댓글 삭제</span>
-					</h3>
-
-					<div class="">
-						<div class="form-group">
-							<c:if test="${bid == '3'}">
-								<input type="password" name="cmt_password" class="form-control"
-									placeholder="비밀번호를 입력하세요" required>
-							</c:if>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="댓글 삭제"
-								class="btn btn-primary py-3 px-4">
-						</div>
-					</div>
-					<input type="hidden" name="bid" value="${sessionScope.bid }">
-					<input type="hidden" name="bno" value="${dto.bno }">
-					<!--  cmtno 어떻게 얻지? -->
-					<input type="hidden" name="cmtno" value="2">
-				</form>
-				<c:if test="${bid == '3'}">
-					<div align="center" class="ftco-animate" style="font-size: small;">
-						<p>댓글 작성 시 입력한 비밀번호와 일치해야 합니다.</p>
-					</div>
-				</c:if>
-			</div>
-		</div>
-	</div>
-</div>
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

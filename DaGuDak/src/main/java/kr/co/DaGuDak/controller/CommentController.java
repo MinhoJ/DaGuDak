@@ -91,24 +91,30 @@ public class CommentController {
 		return new ModelAndView(rv);
 
 	}
-
+	@RequestMapping(value = "deleteForm", method = RequestMethod.GET)
+	public ModelAndView deleteForm(@RequestParam("cmtno") int cmtno, @RequestParam("bno") int bno) throws Exception {
+		System.out.println("commentDeleteForm 조회: " + cmtno);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("comment/commentDelete");
+		mav.addObject("cmtno", cmtno);
+		mav.addObject("bno", bno);
+		return mav;
+	}
+	
+	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ModelAndView delete(@ModelAttribute int cmtno, @ModelAttribute String cmt_password, RedirectAttributes ra,
-			HttpSession session) throws Exception {
+	public ModelAndView delete(@ModelAttribute("cmtno") int cmtno, @ModelAttribute("cmt_password") String cmt_password,
+			@ModelAttribute("bno") int bno, RedirectAttributes ra, HttpSession session) throws Exception {
 		System.out.println("CommentController.delete() 실행");
 		String url = "";
 		RedirectView rv = new RedirectView();
 
-		// System.out.println(delete(cmtno) : );
-
 		boolean cmtDeletePasswordCheck = commentService.delete(cmtno, cmt_password);
 
 		ra.addFlashAttribute("cmtDeletePasswordCheck", cmtDeletePasswordCheck);
-
 		System.out.println("cmtDeletePasswordCheck: " + cmtDeletePasswordCheck);
 
-		// ajax 사용시 어디로 리턴하는지 확인할 것
-		// url = "/DaGuDak/board/content?bno=" + vo.getBno();
+		url = "/DaGuDak/board/content?bno=" + bno;
 		rv.setUrl(url);
 		rv.setExposeModelAttributes(false);
 
