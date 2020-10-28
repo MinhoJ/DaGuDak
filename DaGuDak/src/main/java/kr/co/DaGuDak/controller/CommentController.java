@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/comment/*")
 public class CommentController {
-
-	
-	
 	/*
 	 * @Inject CommentService commentService;
 	 * 
