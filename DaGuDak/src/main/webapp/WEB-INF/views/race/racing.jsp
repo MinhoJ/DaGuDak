@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file = "/WEB-INF/views/common/head.jsp" %>
 
 <section class="ftco-section contact-section ftco-no-pb"
 	id="contact-section">
@@ -130,14 +131,6 @@
 			</tr>
 		</table>
 	</div>
-<%-- <div align="center">
-
-	<img
-		src="${pageContext.request.contextPath}/resources/images/horseracing.jpg"
-		width="800px;"> <img
-		src="${pageContext.request.contextPath}/resources/images/livechat.png"
-		height="362px;">
-</div> --%>
 
 <fieldset>
 		<div id="messageWindow"
@@ -163,3 +156,4 @@
 
  <script src="<c:url value="/resources/js/chat/chat.js" />"></script>
  <script src="<c:url value="/resources/js/racing/race.js?version=2" />"></script>
+ <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

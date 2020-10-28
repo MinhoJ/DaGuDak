@@ -45,9 +45,9 @@
                </h1>
                <p class="mb-4"><!-- 어쩌고저쩌고 --></p>
                <p>
-                  <a href="${pageContext.request.contextPath}/racing"
+                  <a href="${pageContext.request.contextPath}/race/racing"
                      class="btn btn-primary">경기 바로가기</a>
-                  <a href="${pageContext.request.contextPath}/horses"   class="btn btn-white" >경주마 정보</a>
+                  <a href="${pageContext.request.contextPath}/horse/horses"   class="btn btn-white" >경주마 정보</a>
                </p>
             </div>
          </div>

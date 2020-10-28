@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-    
-
-   
-
+   <%@ include file = "/WEB-INF/views/common/head.jsp" %>
    
   <c:if test = "${deleteMessage eq '실패'}">
    <script>
@@ -91,3 +87,6 @@
          </div> 
     </div>
  </section>
+ 
+ 
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>

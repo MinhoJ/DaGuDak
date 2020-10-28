@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@ include file = "/WEB-INF/views/common/head.jsp" %>
+
+   
 <section class="ftco-section contact-section ftco-no-pb"
    id="contact-section">
    <div class="container">
@@ -22,21 +25,21 @@
          <!-- 경기 결과 클릭시 RACE_NO get방식으로 넘기든지 해야함 -->
          <div class="col-lg-4 ftco-animate">
             <div class="blog-entry">
-               <a href="/DaGuDak/racingResult" class="block-20"
+               <a href="/DaGuDak/race/racingResult" class="block-20"
                   style="background-image: url('${pageContext.request.contextPath}/resources/images/list_end.jpg');">
                </a>
                <div class="text d-block">
                   <div class="meta">
                      <p>
-                        <a href="/DaGuDak/racingResult"><span
+                        <a href="/DaGuDak/race/racingResult"><span
                            class="fa fa-calendar mr-2"></span>2020년 10월 19일</a>
                      </p>
                   </div>
                   <h3 class="heading">
-                     <a href="/DaGuDak/racingResult">2번째 경기</a>
+                     <a href="/DaGuDak/race/racingResult">2번째 경기</a>
                   </h3>
                   <p>
-                     <a href="/DaGuDak/racingResult"
+                     <a href="/DaGuDak/race/racingResult"
                         class="btn btn-secondary py-2 px-3">베팅 결과 보기</a>
                   </p>
                </div>
@@ -45,21 +48,21 @@
 
          <div class="col-lg-4 ftco-animate">
             <div class="blog-entry">
-               <a href="/DaGuDak/racingResult" class="block-20"
+               <a href="/DaGuDak/race/racingResult" class="block-20"
                   style="background-image: url('${pageContext.request.contextPath}/resources/images/list_end.jpg');">
                </a>
                <div class="text d-block">
                   <div class="meta">
                      <p>
-                        <a href="/DaGuDak/racingResult"><span
+                        <a href="/DaGuDak/race/racingResult"><span
                            class="fa fa-calendar mr-2"></span>2020년 10월 19일</a>
                      </p>
                   </div>
                   <h3 class="heading">
-                     <a href="/DaGuDak/racingResult">4번째 경기</a>
+                     <a href="/DaGuDak/race/racingResult">4번째 경기</a>
                   </h3>
                   <p>
-                     <a href="/DaGuDak/racingResult"
+                     <a href="/DaGuDak/race/racingResult"
                         class="btn btn-secondary py-2 px-3">베팅 결과 보기</a>
                   </p>
                </div>
@@ -68,21 +71,21 @@
 
          <div class="col-lg-4 ftco-animate">
             <div class="blog-entry">
-               <a href="/DaGuDak/racingResult" class="block-20"
+               <a href="/DaGuDak/race/racingResult" class="block-20"
                   style="background-image: url('${pageContext.request.contextPath}/resources/images/list_end.jpg');">
                </a>
                <div class="text d-block">
                   <div class="meta">
                      <p>
-                        <a href="/DaGuDak/racingResult"><span
+                        <a href="/DaGuDak/race/racingResult"><span
                            class="fa fa-calendar mr-2"></span>2020년 10월 19일</a>
                      </p>
                   </div>
                   <h3 class="heading">
-                     <a href="/DaGuDak/racingResult">5번째 경기</a>
+                     <a href="/DaGuDak/race/racingResult">5번째 경기</a>
                   </h3>
                   <p>
-                     <a href="/DaGuDak/racingResult"
+                     <a href="/DaGuDak/race/racingResult"
                         class="btn btn-secondary py-2 px-3">베팅 결과 보기</a>
                   </p>
                </div>
@@ -93,3 +96,5 @@
       </div>
    </div>
 </section>
+
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
