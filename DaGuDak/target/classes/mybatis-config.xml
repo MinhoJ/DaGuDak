@@ -11,7 +11,8 @@
 		<typeAlias alias="BoardVO" type="kr.co.DaGuDak.model.BoardVO" />
 		<typeAlias alias="MemberVO" type="kr.co.DaGuDak.model.MemberVO" />
 		<typeAlias alias="CommentVO" type="kr.co.DaGuDak.model.CommentVO" />
-		<typeAlias alias = "HorseVO" type = "kr.co.DaGuDak.model.HorseVO" />
+		<typeAlias alias ="HorseVO" type = "kr.co.DaGuDak.model.HorseVO" />
+		<typeAlias alias ="RaceVO" type = "kr.co.DaGuDak.model.RaceVO"/>
 	</typeAliases>
 
 </configuration>

@@ -14,7 +14,11 @@ public class HorseVO {
 	private int age;
 	private int weight;
 	private String gender;
-	private int[] speed;
+	private String speed;
+	private int speed1;
+	private int speed2;
+	private int speed3;
+	private int speed4;
 	private int max_speed;
 	private int win_count;
 	private int total_games;

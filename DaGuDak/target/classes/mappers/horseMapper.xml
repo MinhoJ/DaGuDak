@@ -4,9 +4,49 @@
 
 <mapper namespace="horse">
 
-   <select id="horseList" resultType="HorseVO">
-      SELECT *
-      FROM horse       
+	<select id="horseList" resultType="HorseVO">
+		SELECT * 
+		FROM HORSE
+		ORDER BY HORSE_NO
+	</select>
+	
+	<insert id="insertHorse">
+      INSERT INTO horse (horse_no, horse_name, kind, age, weight, gender, speed)
+      VALUES (
+             (SELECT
+               NVL(MAX(horse_no)+1,1) as horse_no
+               FROM horse),
+             #{horse_name},
+             #{kind},
+             #{age},
+             #{weight},
+             #{gender},
+             #{speed}
+            )
+   </insert>
+   
+   <select id="readHorse" resultType="HorseVO">
+   SELECT *
+   FROM HORSE
+   WHERE HORSE_NO = #{HORSE_NO}
    </select>
+   
+   <update id="updateHorse">
+      UPDATE horse
+      SET 
+         horse_name = #{horse_name},
+         kind = #{kind},
+         age = #{age},
+         weight = #{weight},
+         gender = #{gender},
+         speed = #{speed}
+      WHERE
+         horse_no = #{horse_no}
+   </update>
+   
+   <delete id="deleteHorse">
+   DELETE FROM HORSE WHERE HORSE_NO = #{HORSE_NO}
+   </delete>
+	
 
 </mapper>
