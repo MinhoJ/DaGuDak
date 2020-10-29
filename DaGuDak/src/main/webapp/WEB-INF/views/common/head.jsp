@@ -68,7 +68,7 @@
             <c:otherwise>
                
                <!-- 로그인 일 때 -->
-               <a href="${pageContext.request.contextPath}/member/pointBank" class="btn btn-primary">포인트 충전</a>
+               <a href="${pageContext.request.contextPath}/member/checkPwd" class="btn btn-primary">포인트 충전</a>
                <a href="${pageContext.request.contextPath}/member/myPage" class="btn btn-primary">마이페이지</a>
                <a href="${pageContext.request.contextPath}/member/logout" class="btn btn-primary">로그아웃</a>
             </c:otherwise>

@@ -1,18 +1,21 @@
 package kr.co.DaGuDak.controller;
 
+import java.util.Map;
+
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -148,7 +151,7 @@ public class MemberController {
 			throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String loginId = (String) session.getAttribute("userId");
-		
+
 		// 비밀번호 체크하기
 		boolean passwordChk = service.passwordChk(loginId, vo);
 
@@ -173,37 +176,43 @@ public class MemberController {
 
 	}
 
-	// 포인트 충전
-	@RequestMapping(value = "pointBank", method = RequestMethod.GET)
-	public String chargePointGet(HttpSession session, Model model) throws Exception {
-		MemberVO vo = new MemberVO();
+	// 본인확인
+	@RequestMapping(value = "checkPwd", method = RequestMethod.GET)
+	public String checkPwd(HttpSession session, Model model, @ModelAttribute MemberVO vo) throws Exception {
 		String loginId = (String) session.getAttribute("userId");
 		vo = service.userInfo(loginId);
 		model.addAttribute("vo", vo);
-		return "member/pointBank";
+		return "member/checkPassword";
 	}
 
+	@RequestMapping(value = "checkPwd", method = RequestMethod.POST)
+	public String checkPwd2(HttpSession session, Model model, @ModelAttribute MemberVO vo) throws Exception {
+		String loginId = (String) session.getAttribute("userId");
+		
+		boolean passwordChk = service.passwordChk(loginId, vo);
+		vo = service.userInfo(loginId);
+		model.addAttribute("vo", vo);
+		
+		if (passwordChk) {
+			return "member/pointBank";
+		} else {
+			model.addAttribute("pwdCheck", "실패");
+			return "member/checkPassword";
+		}
+
+	}
+
+	// 포인트 충전 실질적
 	@RequestMapping(value = "pointBank", method = RequestMethod.POST)
 	public ModelAndView chargePointPost(Model model, HttpSession session, @ModelAttribute MemberVO vo)
 			throws Exception {
-
 		ModelAndView mv = new ModelAndView();
 		String loginId = (String) session.getAttribute("userId");
 
-		boolean passwordChk = service.passwordChk(loginId, vo);
-
-		if (passwordChk) {
-			int myPoint = service.getPoint(loginId);
-			service.chargePoint(loginId, myPoint + vo.getPoint());
-			model.addAttribute("chargePoint", "성공");
-			mv.setViewName("home");
-		} else {
-
-			vo = service.userInfo(loginId);
-			model.addAttribute("vo", vo);
-			model.addAttribute("chargePoint", "실패");
-			mv.setViewName("member/pointBank");
-		}
+		int myPoint = service.getPoint(loginId);
+		service.chargePoint(loginId, myPoint + vo.getPoint());
+		model.addAttribute("chargePoint", "성공");
+		mv.setViewName("home");
 
 		return mv;
 	}

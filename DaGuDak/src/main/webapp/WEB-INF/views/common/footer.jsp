@@ -57,7 +57,7 @@
 									href="${pageContext.request.contextPath}/member/myPage"><span
 										class="fa fa-chevron-right mr-2"></span>내 정보 수정</a></li>
 								<li><a
-									href="${pageContext.request.contextPath}/member/pointBank"><span
+									href="${pageContext.request.contextPath}/member/checkPwd"><span
 										class="fa fa-chevron-right mr-2"></span>포인트 충전</a></li>
 								<li><a
 									href="${pageContext.request.contextPath}/bet/bettingHistory"><span

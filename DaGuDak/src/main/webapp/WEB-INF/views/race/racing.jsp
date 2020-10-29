@@ -146,9 +146,6 @@
          <h1 id="timer">
             READY
          </h1>
-      
-
-   
    
       <div style="position:relative; left:10px; top:330px" id="img1">
          <%-- <img src="${pageContext.request.contextPath}/resources/images/horse_stop.png" class="stop_horse1"  id="race1" > --%>
@@ -195,7 +192,7 @@
 
 <c:if test = "${userId != null }">
    <script>
-   var loginId = ${userId};
+   var loginId = '${userId}';
    </script>
    </c:if>
    <c:if test = "${userId == null }">
@@ -205,6 +202,5 @@
    </c:if>
 
 <script src="<c:url value="/resources/js/chat/chat.js" />"></script> 
- 
  <script src="<c:url value="/resources/js/racing/race.js?version=5" />"></script>
  <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
