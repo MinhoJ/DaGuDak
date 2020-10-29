@@ -1,5 +1,5 @@
 var textarea = document.getElementById("messageWindow");
-var webSocket = new WebSocket('ws://192.168.1.110:8089/DaGuDak/race/racing');
+var webSocket = new WebSocket('ws://192.168.0.104:8089/DaGuDak/race/racing');
 var inputMessage = document.getElementById('inputMessage');
     
     webSocket.onerror = function(event) {     onError(event)   };
@@ -14,7 +14,7 @@ var inputMessage = document.getElementById('inputMessage');
     
     function onOpen(event) {
        textarea.innerHTML += "연결 성공<br>";
-       webSocket.send(id + "님이 입장 하였습니다");   }
+       webSocket.send(loginId + "님이 입장 하였습니다");   }
     
     function onError(event) {     alert(event.data);   }
     
@@ -25,7 +25,7 @@ var inputMessage = document.getElementById('inputMessage');
         + inputMessage.value 
         + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><br>";
         textarea.scrollTop=textarea.scrollHeight;
-        webSocket.send(id +  " : " + inputMessage.value);
+        webSocket.send(loginId + " : " + inputMessage.value);
 		inputMessage.value = "";
 	}
     

@@ -2,6 +2,8 @@ package kr.co.DaGuDak.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ public class RaceController {
 
 	@RequestMapping(value = "/racing", method = RequestMethod.GET)
 	public String racing(Locale locale, Model model) {
+
 		return "race/racing";
 	}
 	

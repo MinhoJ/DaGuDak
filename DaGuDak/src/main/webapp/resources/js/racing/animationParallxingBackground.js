@@ -53,7 +53,7 @@ function init(){
  
 
  //Define Asset Image File Array
- assetfiles = ['resources/images/racing/background/bgImg.png', 'resources/images/racing/background/crowd2.png','resources/images/racing/background/track.png'];
+ assetfiles = ['/DaGuDak/resources/images/racing/background/bgImg.png', '/DaGuDak/resources/images/racing/background/crowd2.png','/DaGuDak/resources/images/racing/background/track.png'];
  
  //Create Custom Literal Object(Define spritesRate Property) & Insert into Asset Image Array
  assets.push({spritesRate: 0.001});
@@ -87,7 +87,7 @@ function onAssetLoadComplete(){
 
 // 배경 이미지 사이즈 조정
 var backgroundImg1 = new Image();
-backgroundImg1.src = "resources/images/racing/background/sky.png";
+backgroundImg1.src = "/DaGuDak/resources/images/racing/background/sky.png";
 backgroundImg1.onload = function(){
     scaleToFill(this);
 }

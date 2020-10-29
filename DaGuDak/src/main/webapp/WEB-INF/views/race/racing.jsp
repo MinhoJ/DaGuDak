@@ -176,7 +176,7 @@
       <div id="messageWindow"
          style="margin-left: 10px; width: 500px; height: 300px; border: 1px solid grey; overflow: auto;"></div>
       <br /> 
-      <input id="inputMessage" type="text" onkeypress="enterKey(event)" st/> 
+      <input id="inputMessage" type="text" onkeypress="enterKey(event)" /> 
       <input type="submit"
          value="send" onclick="send()" style="margin-left: 10px" />
    </fieldset>
@@ -186,15 +186,25 @@
 <section class="ftco-section contact-section ftco-no-pb"
    id="contact-section">
    <div class="container">
-      <div>경마 경기</div>
+      <div>경마 경기 ${userId}</div>
       <div>출주마 정보</div>
       <div>대기시간에 베팅 가능(경시 시작 후 베팅 불가)</div>
       <div>실시간 단체 채팅</div>
    </div>
 </section>
 
+<c:if test = "${userId != null }">
+   <script>
+   var loginId = ${userId};
+   </script>
+   </c:if>
+   <c:if test = "${userId == null }">
+   <script>
+   var loginId = "익명";
+   </script>
+   </c:if>
 
-
- <script src="<c:url value="/resources/js/chat/chat.js" />"></script> 
+<script src="<c:url value="/resources/js/chat/chat.js" />"></script> 
+ 
  <script src="<c:url value="/resources/js/racing/race.js?version=5" />"></script>
  <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

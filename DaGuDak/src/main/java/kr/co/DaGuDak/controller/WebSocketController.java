@@ -17,13 +17,14 @@ public class WebSocketController {
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
-		System.out.println(message);
 		synchronized (clients) {
 			/*
 			 * 메세지는 '이름:' 추가하여 보냄 귓속말은 메세지 입력 창에 [번호] 입력하면 됨 admin창에만 번호를 보이게 하여 admin은 귓속말을
 			 * 할 수 있게 한다
 			 */
 			String id = null;
+			System.out.println(message);
+			
 			if (message.indexOf(":[") > 0) {
 				id = message.substring(message.indexOf(":[") + 2, message.indexOf("]"));
 				System.out.println("id:[" + id + "]");
@@ -51,6 +52,7 @@ public class WebSocketController {
 
 	@OnClose
 	public void onClose(Session session) {
+		
 		clients.remove(session);
 	}
 }
