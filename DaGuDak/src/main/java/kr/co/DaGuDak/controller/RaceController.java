@@ -16,12 +16,12 @@ public class RaceController {
 
 		return "race/racing";
 	}
-	
+
 	@RequestMapping(value = "/racingList", method = RequestMethod.GET)
 	public String racingList(Locale locale, Model model) {
 		return "race/racingList";
 	}
-	
+
 	@RequestMapping(value = "/racingResult", method = RequestMethod.GET)
 	public String racingResult(Locale locale, Model model) {
 		return "race/racingResult";

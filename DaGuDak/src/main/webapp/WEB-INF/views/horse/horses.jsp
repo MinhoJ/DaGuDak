@@ -5,6 +5,23 @@
 function horseCreat() {
    location.href="/DaGuDak/horse/createForm";   
 }
+
+function raceCreate(){
+	location.href="/DaGuDak/race/createRace";
+}
+
+$(document).ready(function(){
+	$("input[type='checkbox']").on("click",function(){
+		var count = $("input:checked[type='checkbox']").length;
+	
+		if(count>5){
+			$(this).attr("checked",false);
+			alert("5개 까지만 선택 할 수 있습니다.");
+		}
+	
+	});
+});
+
 </script>
  
 <section class="ftco-section contact-section ftco-no-pb"
@@ -22,9 +39,13 @@ function horseCreat() {
 
 <section class="bg-light ftco-animate">
    <div class="container">
+   <form name="myPageForm">
             <c:if test="${sessionScope.userId == 'admin' }">
             <div align="center">
          <button type="button" onclick="javascript:horseCreat()" class="btn btn-primary mt-5 px-4 py-3">말 생성하기</button>
+         </div>
+         <div align="center">
+         <button type="button" onclick="javascript:raceCreat()" class="btn btn-primary mt-5 px-4 py-3">참가말 선택</button>
          </div>
          </c:if>
             <div class="row d-flex pt-5">
@@ -42,12 +63,16 @@ function horseCreat() {
                         <p align="center">
                            <a href="/DaGuDak/horse/horseInfo"
                               class="btn btn-secondary py-2 px-3">상세 정보</a>
+                              <c:if test="${sessionScope.userId == 'admin' }">
+               <input type = "checkbox" value = "${horse.horse_no }">
+               </c:if>
                         </p>
                      </div>
                   </div>
                </div>
                </c:forEach>
             </div>
+            </form>
          </div>
     </section>
  

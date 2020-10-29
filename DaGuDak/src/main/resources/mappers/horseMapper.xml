@@ -4,9 +4,9 @@
 
 <mapper namespace="horse">
 
-	<select id="horsesList" resultType="HorseVO">
-		SELECT * 
-		FROM HORSE
-	</select>
+   <select id="horseList" resultType="HorseVO">
+      SELECT *
+      FROM horse       
+   </select>
 
 </mapper>

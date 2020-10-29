@@ -24,10 +24,8 @@ public class HorseController {
 
 	@RequestMapping(value = "horses", method = RequestMethod.GET)
 	public String horses(Locale locale, Model model) throws Exception {
-		System.out.println("메서드 실행");
 		List<HorseVO> horseList = new ArrayList<HorseVO>();
 		horseList = horseService.horseList();
-		System.out.println("horseList size: " + horseList.size());
 		
 		model.addAttribute("horseList", horseList);
 		return "horse/horses";
