@@ -49,7 +49,6 @@ public class MemberController {
 			return 2;
 		} else {
 			int result = service.idChk(member_id);
-
 			// 아이디 사용 불가
 			if (result == 1) {
 				return 1;
@@ -58,12 +57,6 @@ public class MemberController {
 				return 0;
 			}
 		}
-	}
-
-	// 로그인 화면
-	@RequestMapping("login")
-	public String login() {
-		return "member/login";
 	}
 
 	// 로그인 여부
@@ -198,7 +191,7 @@ public class MemberController {
 	}
 
 	// 포인트 충전 실질적
-	@RequestMapping(value = "pointBank", method = RequestMethod.POST)
+	@RequestMapping(value = "pointBank")
 	public ModelAndView chargePointPost(Model model, HttpSession session, @ModelAttribute MemberVO vo)
 			throws Exception {
 		ModelAndView mv = new ModelAndView();

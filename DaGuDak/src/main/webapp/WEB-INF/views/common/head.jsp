@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
    <title>다그닥</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   
    <!-- head 옆 아이콘 -->
    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/horse-3-32.ico"/>
    
@@ -28,14 +28,40 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/flaticon.css">
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
-	<!-- 우리가 추가한 script -->
-	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
-	
-	<script src="<c:url value="/resources/js/board/list.js" />"></script>
-	<script src="<c:url value="/resources/js/board/write.js" />"></script>
-	<script src="<c:url value="/resources/js/board/update.js" />"></script>
-	<script src="<c:url value="/resources/js/board/content.js" />"></script>
+   <!-- 우리가 추가한 script -->
+   <script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+   <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+   
+   <script src="<c:url value="/resources/js/board/list.js" />"></script>
+   <script src="<c:url value="/resources/js/board/write.js" />"></script>
+   <script src="<c:url value="/resources/js/board/update.js" />"></script>
+   <script src="<c:url value="/resources/js/board/content.js" />"></script>
+   
+   <script type="text/javascript">
+        $(document).ready(function () {
+           var url = document.location.href.split("/");
+          
+          if (url.length == 5) { //HOME
+             $('#menu1').addClass("active");
+          } else if (url.length >= 6) {
+             if(url[4] == "board") {
+                if(url[5] == 'list?bid=1'){
+                   $('#menu2').addClass("active");
+                } else if (url[5] == 'list?bid=2') {
+                   $('#menu5').addClass("active");
+                } else if (url[5] == 'list?bid=3') {
+                   $('#menu6').addClass("active");
+                } else if (url[5] == 'list?bid=4') {
+                   $('#menu7').addClass("active");
+                }
+             } else if(url[4] == "race") {
+                $('#menu3').addClass("active");
+             } else if(url[4] == "horse") {
+                $('#menu4').addClass("active");
+             }
+          }
+        });
+    </script> 
 
 
 </head>
@@ -103,6 +129,19 @@
          </div>
       </div>
    </div>
+   
+   
+   
+ 
+   
+<!--    
+   <script>
+  $(function(){
+     $("nav").click(function(){$(this).css("background", "active")})
+  })
+   </script>
+    -->
+   
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container d-flex align-items-center">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,13 +151,13 @@
             <ul class="navbar-nav mr-auto">
             <!-- 6개까지. 7개 이상 쓰면 이상해짐 -->
             <!-- 페이지에 따라서  active 달라져야 함. js로.-->
-               <li class="nav-item active"><a href="${pageContext.request.contextPath}" class="nav-link">Home</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=1" class="nav-link">공지사항</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/race/racingList" class="nav-link">오늘의 경기</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/horse/horses" class="nav-link">경주마 정보</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=2" class="nav-link">경마 뉴스</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=3" class="nav-link">익명게시판</a></li>
-               <li class="nav-item"><a href="${pageContext.request.contextPath}/board/list?bid=4" class="nav-link">고객센터</a></li>
+               <li id="menu1" class="nav-item "><a href="${pageContext.request.contextPath}" class="nav-link">Home</a></li>
+               <li id="menu2" class="nav-item "><a href="${pageContext.request.contextPath}/board/list?bid=1" class="nav-link">공지사항</a></li>
+               <li id="menu3" class="nav-item "><a href="${pageContext.request.contextPath}/race/racingList" class="nav-link">오늘의 경기</a></li>
+               <li id="menu4" class="nav-item "><a href="${pageContext.request.contextPath}/horse/horses" class="nav-link">경주마 정보</a></li>
+               <li id="menu5" class="nav-item "><a href="${pageContext.request.contextPath}/board/list?bid=2" class="nav-link">경마 뉴스</a></li>
+               <li id="menu6" class="nav-item "><a href="${pageContext.request.contextPath}/board/list?bid=3" class="nav-link">익명게시판</a></li>
+               <li id="menu7" class="nav-item "><a href="${pageContext.request.contextPath}/board/list?bid=4" class="nav-link">고객센터</a></li>
             </ul>
             <div style="margin-right: 10px;"><a href="${pageContext.request.contextPath}/race/racing" class="btn btn-primary">경기 바로가기</a></div>
          </div>

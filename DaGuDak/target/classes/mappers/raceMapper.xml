@@ -4,12 +4,33 @@
 
 <mapper namespace="race">
 
-<insert id="insert">
-		insert into race(
+
+	<insert id="insertRace" parameterType="RaceVO">
+		insert into
+		race(race_no,
+		race_date,
+		first_horse,
+		second_horse,
+		third_horse,
+		fourth_horse,
+		fifth_horse
 		)
-		values ( 
+		values (
+		(SELECT
+		NVL(MAX(race_No)+1,1)
+		FROM race),
+		#{race_Date},
+		#{first_Horse},
+		#{second_Horse},
+		#{third_Horse},
+		#{fourth_Horse},
+		#{fifth_Horse}
 		)
 	</insert>
+
+	<select id="raceList" resultType="RaceVO">
+		SELECT * FROM race
+	</select>
 
 
 </mapper>

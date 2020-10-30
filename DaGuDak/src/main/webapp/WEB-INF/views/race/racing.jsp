@@ -27,7 +27,7 @@
       width: 100%;
       height: 650px;
       margin-left: 10px;
-      left: 20%;
+      left: calc(50% - 560px);
       display: flex;
    }
    
@@ -86,19 +86,23 @@
             
          }
       
-      #me {
-   position: relative;
-   left: 100px;
+ #me { 
+ color: gray;
+ float : right;
+   
 }
 
 #you {
-   position: relative;
-   left: 10px;
-   min-width: 100px;
-   max-width : 400px;
+color: black; 
+float : left; 
 }
    
 </style>
+
+<!-- 출발 버튼 및 랭킹 -->
+   <div align="center" class="mt-3">
+      <input type="button" onclick="start()" value=" 출발! >> " style="margin : 0px 0px 10px 10px; ">
+   </div>
 
 
 
@@ -160,24 +164,23 @@
 </div>
 </div>
 
-<!-- 트랙 생성 및 말 생성 -->
-
-   <!-- 출발 버튼 및 랭킹 -->
-   <div>
-      <input type="button" onclick="start()" value=" 출발! >> " style="margin : 0px 0px 10px 10px; ">
-   </div>
-
 
 <!-- 채팅 -->
-<fieldset>
-      <div id="messageWindow"
-         style="margin-left: 10px; width: 500px; height: 300px; border: 1px solid grey; overflow: auto;"></div>
-      <br /> 
-      <input id="inputMessage" type="text" onkeypress="enterKey(event)" /> 
-      <input type="submit"
-         value="send" onclick="send()" style="margin-left: 10px" />
+ 
+   <fieldset class="mt-3">
+      <div class="container">
+      <!-- 채팅창 --> 
+       <div>
+            <div id="messageWindow" style="width: 700px; height: 400px; border: 1px solid grey; overflow: auto; float: left"></div>
+            <div id="chatList" class="chatList-body pt-4 pb-1 px-4" style="margin-left: 13px; width: 200px; height: 400px; border: 2px solid grey; float: right"></div>
+         </div>
+           <div class="List"  >
+            <input id="inputMessage" type="text" class="mt-3" size ="70px;" onkeypress="enterKey(event)" style="float: left"/> 
+            <input type="submit"  value="send"  class="btn btn-primary py-1 px-2 mt-3"  onclick="send()" style="margin-left: 11px; float: left;" /> 
+           </div>
+           
+        </div>
    </fieldset>
-
 
 
 <section class="ftco-section contact-section ftco-no-pb"

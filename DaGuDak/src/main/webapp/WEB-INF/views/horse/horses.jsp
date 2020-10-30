@@ -6,6 +6,29 @@ function horseCreat() {
 	location.href="/DaGuDak/horse/createForm";	
 }
 
+function select(){
+	
+	var frm = document.selectHorses;
+	var arr_checked = document.getElementsByName("chkHorse");
+	var checkedCount = 0;
+	
+	for(var i=0; i<arr_checked.length; i++){
+        if(arr_checked[i].checked == true) {
+        	checkedCount++;
+        }
+    }
+	
+	if(checkedCount<5){
+		alert("말을 5마리 선택해 주세요.");
+		return;
+	}else{
+		frm.submit();
+	}
+
+	
+
+}
+
 $(document).ready(function(){
 	$("input[type='checkbox']").on("click",function(){
 		var count = $("input:checked[type='checkbox']").length;
@@ -17,6 +40,8 @@ $(document).ready(function(){
 	});
 	
 });
+
+
 </script>
 <c:if test="${deleteResult == 'true'}">
 <script>
@@ -39,14 +64,20 @@ alert("삭제되었습니다.");
 
 <section class="bg-light ftco-animate">
    <div class="container">
-<form name="selectHorses" action = "/DaGuDak/race/createRace">
+<form name="selectHorses" method="post" action = "/DaGuDak/race/createRace">
    			<c:if test="${sessionScope.userId == 'admin' }">
    			<div align="center">
 			<button type="button" onclick="javascript:horseCreat()" class="btn btn-primary mt-5 px-4 py-3">말 생성하기</button>
 			</div>
 <div align="center">
-         <button type="submit" class="btn btn-primary mt-5 px-4 py-3">참가말 선택</button>
+         <button type="button" onclick = "javascript:select()" class="btn btn-primary mt-5 px-4 py-3">참가말 선택</button>
          </div>
+<label>일자 선택</label>
+					<input type="datetime-local" id="race_date" name="race_date"
+						min="2020-10-30" max="2020-12-31"
+						contenteditable="false">
+						
+         
 			</c:if>
             <div class="row d-flex pt-5">
             <c:forEach var="horse" items="${horseList }">
@@ -72,7 +103,7 @@ alert("삭제되었습니다.");
                            <a href="/DaGuDak/horse/horseInfo?horse_no=${horse.horse_no }"
                               class="btn btn-secondary py-2 px-3">상세 정보</a>
 <c:if test="${sessionScope.userId == 'admin' }">
-               <input type = "checkbox" name = "btn" value = "${horse.horse_no }">
+               <input type = "checkbox" name = "chkHorse" value = "${horse.horse_no }">
                </c:if>
                         </p>
                      </div>

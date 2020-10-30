@@ -73,8 +73,6 @@ public class BoardServiceImpl implements BoardService {
 			vo = this.newsList().get(bno-1);
 			return vo;
 		}
- 			
-			
 	}
 
 	@Override
@@ -212,9 +210,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		List<BoardVO> newsList = new ArrayList<BoardVO>();
 		
-		System.out.println(jsonObj.get("lastBuildDate"));	//검색결과 생성 시간
-		System.out.println(jsonObj.get("total"));			//검색 결과의 총 개수
-		System.out.println(jsonObj.get("display"));			//URL에서 설정했던 검색 결과 개수 제한
 		
 		JSONArray jsonArr = (JSONArray)jsonObj.get("items"); //개별 검색 결과
 		//System.out.println(jsonArr);
@@ -235,9 +230,7 @@ public class BoardServiceImpl implements BoardService {
 			vo.setWriter("외부 사이트");
 			newsList.add(vo);
 		}
-		System.out.println(newsList.size());
-		System.out.println(newsList.get(0).getTitle());
-		System.out.println(newsList.get(1).getTitle());
+
 		return newsList;
 	}
 	

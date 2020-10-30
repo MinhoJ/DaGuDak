@@ -112,7 +112,6 @@ public class BoardController {
 
 		// pom.xml에 멀티파트 디펜던시 추가함
 		// list.jsp에 input hidden 값으로 bid 고정시켜둠. 세션처리 후 jsp 수정
-		System.out.println("BoardController.insert() : getTitle==" + vo.getTitle());
 		boardService.create(vo, request);
 		return "redirect:list?bid=" + vo.getBid();
 	}

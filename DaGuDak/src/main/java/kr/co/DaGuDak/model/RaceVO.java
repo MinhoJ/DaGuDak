@@ -11,14 +11,17 @@ import lombok.ToString;
 @ToString
 public class RaceVO {
 	
-	private int race_no;
-	private Date race_date;
-	private int first_horse;
-	private int second_horse;
-	private int third_horse;
-	private int fourth_horse;
-	private int fifth_horse;
-	private int winner;
+	private int race_No;
+	private Date race_Date;
+	private int first_Horse;
+	private int second_Horse;
+	private int third_Horse;
+	private int fourth_Horse;
+	private int fifth_Horse;
+	private int first_Place;
+	private int second_Place;
+	private String isEnd;
+	
 
 	
 }

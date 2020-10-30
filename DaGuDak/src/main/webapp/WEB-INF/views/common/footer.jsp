@@ -41,18 +41,12 @@
 					</ul>
 				</div>
 			</div>
-
-			<c:choose>
-				<c:when test="${sessionScope.userId == null}">
-					<li><a href="#" data-toggle="modal"
-						data-target="#exampleModalCenter"><span
-							class="fa fa-chevron-right mr-2"></span>로그인</a></li>
-				</c:when>
-				<c:otherwise>
+			
 					<div class="col-lg col-md-6">
 						<div class="ftco-footer-widget">
 							<h2 class="ftco-heading-2">마이페이지</h2>
 							<ul class="list-unstyled">
+								<c:if test ="${sessionScope.userId != null }">
 								<li><a
 									href="${pageContext.request.contextPath}/member/myPage"><span
 										class="fa fa-chevron-right mr-2"></span>내 정보 수정</a></li>
@@ -62,13 +56,21 @@
 								<li><a
 									href="${pageContext.request.contextPath}/bet/bettingHistory"><span
 										class="fa fa-chevron-right mr-2"></span>베팅 히스토리</a></li>
+								</c:if>
+								<c:if test = "${sessionScope.userId ==null }">
+								<li><a
+									href="#" data-toggle="modal" data-target="#exampleModalCenter"><span
+										class="fa fa-chevron-right mr-2" ></span>내 정보 수정</a></li>
+								<li><a
+									href="#" data-toggle="modal" data-target="#exampleModalCenter"><span
+										class="fa fa-chevron-right mr-2"></span>포인트 충전</a></li>
+								<li><a
+									href="#" data-toggle="modal" data-target="#exampleModalCenter"><span
+										class="fa fa-chevron-right mr-2"></span>베팅 히스토리</a></li>
+								</c:if>
 							</ul>
 						</div>
 					</div>
-
-				</c:otherwise>
-			</c:choose>
-
 
 			<div class="col-lg col-md-6">
 				<div class="ftco-footer-widget">
